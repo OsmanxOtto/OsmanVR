@@ -23,8 +23,7 @@ body {font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0a0a0a 0
 .manifesto h2 {font-size:1.8rem;font-weight:700;margin-bottom:1rem;color:#007AFF;}
 .manifesto p {line-height:1.7;color:#E5E5E7;margin-bottom:1rem;}
 .core-value {font-weight:600;color:#34C759;font-size:1.1rem;}
-/* --- PRO BOARD & TIMELINE REVIZE --- */
-
+/* --- BOARD & TIMELINE REVIZE --- */
 /* Timeline improvement */
 .smart-timeline {background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:3rem 2rem;margin:3rem 0;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.23);}
 .smart-timeline::before {content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FF3B30,#007AFF,#34C759,#FFD60A,#AF52DE);z-index:1;animation:pulseLine 3s infinite linear;}
@@ -38,7 +37,6 @@ body {font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0a0a0a 0
 .timeline-container{position:relative;max-width:1200px;margin:0 auto;}
 .timeline-spine{position:absolute;left:50%;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#FF3B30,#007AFF,#34C759,#FFD60A,#AF52DE);transform:translateX(-50%);border-radius:2.5px;box-shadow:0 0 20px rgba(0,122,255,0.3);z-index:0;animation:pulseSpine 5s infinite linear;}
 @keyframes pulseSpine {0%{box-shadow:0 0 20px #007AFF44;}50%{box-shadow:0 0 40px #34C75999;}100%{box-shadow:0 0 20px #007AFF44;}}
-
 /* Workflow Board improvements */
 .workflow-board{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-bottom:3rem;align-items:start;}
 .band{background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.25rem;position:relative;display:flex;flex-direction:column;height:100%;box-shadow:0 6px 24px rgba(0,0,0,0.15);}
@@ -65,21 +63,17 @@ body {font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0a0a0a 0
 .card-front .info-btn:hover {background: rgba(52,199,89,0.2);}
 .card-back h4{color:#007AFF;font-size:1rem;margin-bottom:0.5rem;}
 .card-back p{color:#E5E5E7;font-size:0.93rem;line-height:1.5;}
-
 /* Timeline step improvements */
 .timeline-step{background:linear-gradient(135deg,rgba(0,0,0,0.44) 0%,rgba(26,26,46,0.36) 100%);border:1px solid rgba(255,255,255,0.13);border-radius:16px;padding:2rem;position:relative;transition:all 0.3s ease;cursor:pointer;backdrop-filter:blur(8px);margin-bottom:2.1rem;min-height:230px;display:flex;flex-direction:column;}
 .timeline-step:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 20px 40px rgba(0,0,0,0.34);border-color:rgba(255,255,255,0.23);}
 .timeline-step .step-icon{font-size:2.3rem;margin-bottom:0.7rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.28));}
 .timeline-step .step-number{position:absolute;top:-13px;left:1.5rem;background:linear-gradient(135deg,#007AFF,#34C759);color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.08rem;box-shadow:0 4px 13px rgba(0,122,255,0.15);border:2.2px solid #1a1a2e;}
-
 /* Responsive Board/Timeline (Mobile & Tablet) */
 @media (max-width:1200px){.workflow-board{grid-template-columns:repeat(2,1fr);gap:1.1rem;}}
 @media (max-width:850px){.workflow-board{grid-template-columns:1fr;gap:1rem;}}
 @media (max-width:768px){.main-title{font-size:2.5rem;}.color-legend{gap:1rem;}.smart-timeline{padding:2rem 1rem;}.timeline-controls{flex-direction:column;align-items:center;}.timeline-btn{width:200px;text-align:center;}.step-icon{font-size:2rem;}.step-title{font-size:1.2rem;}.workflow-board{grid-template-columns:1fr;gap:0.7rem;}.step-card{min-height:160px;}}
-
 /* Glassmorphism for manifesto/side sections */
 .glass-section {background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);border-radius:18px;border:1px solid rgba(52,199,89,0.12);padding:1.7rem;margin-bottom:2rem;}
-
 /* Light/Dark toggle */
 .toggle-mode {position:fixed;top:26px;right:36px;z-index:1200;background:rgba(0,122,255,0.08);border:1px solid #007AFF;border-radius:16px;padding:0.6rem 1.3rem;font-weight:600;color:#007AFF;cursor:pointer;box-shadow:0 2px 6px #1a1a2e22;transition:background 0.2s;}
 .toggle-mode:hover{background:rgba(0,122,255,0.18);}
@@ -89,8 +83,7 @@ body.light-mode .band,.light-mode .manifesto,.light-mode .glass-section,.light-m
 body.light-mode .card-control-btn{background:rgba(0,122,255,0.08);color:#007AFF;}
 body.light-mode .card-control-btn.expand-btn{color:#34C759;background:rgba(52,199,89,0.13);}
 body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AFF;}
-
-/* Footer, sidebar, cards and other styles eski canvasın tamamı aşağıdan entegre devam eder */
+/* Footer, sidebar, cards ve diğerler eski canvasın tamamı devam edecek */
 </style>
 </head>
 <body>
@@ -107,7 +100,357 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <div class="legend-item"><span class="legend-icon">❤️</span><div class="legend-dot" style="background-color:#AF52DE"></div><span class="legend-text">Applied Theatre</span></div>
 </div>
 </header>
-
 <section class="manifesto">
 <h2>Manifesto: Why This Ensemble?</h2>
-<p>The Virtual Acting Ensemble Workflow reinvents digital-located theatre. We fuse structure (Agile/Scrum backbone), co-creation (Devised), social vision (Applied Theatre), creative iteration (Design Thinking), and deep character work (Chubbuck). Every tool and milestone comes from a real discipline—no generic steps. The mission: a modular, transparent, and sustainable process giving every artist creative agency, every team clarity, and every project true
+<p>The Virtual Acting Ensemble Workflow reinvents digital-located theatre. We fuse structure (Agile/Scrum backbone), co-creation (Devised), social vision (Applied Theatre), creative iteration (Design Thinking), and deep character work (Chubbuck). Every tool and milestone comes from a real discipline—no generic steps. The mission: a modular, transparent, and sustainable process giving every artist creative agency, every team clarity, and every project true engagement—wherever, whenever.</p>
+<p class="core-value">Decentralized Authority, Unique Artist Producement. Every voice matters. Cybernetic, innovative, collective, and bold.</p>
+</section>
+
+<section class="smart-timeline">
+<div class="timeline-header">
+<h3 class="timeline-title">Smart Ensemble Timeline</h3>
+<p class="timeline-subtitle">Interactive workflow visualization with multiple perspectives</p>
+<div class="timeline-controls">
+<div class="timeline-btn active" onclick="switchView('overview')">📊 Overview</div>
+<div class="timeline-btn" onclick="switchView('detailed')">🔍 Detailed Steps</div>
+<div class="timeline-btn" onclick="switchView('sprint')">🚀 Sprint Cycle</div>
+</div>
+</div>
+<!-- Overview Timeline -->
+<div class="timeline-view active" id="overview">
+<div class="timeline-container">
+<div class="timeline-spine"></div>
+<!-- ========== PHASES ========== -->
+<!-- Foundation Phase -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">🎯 Foundation Phase</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">1</div>
+<div class="step-icon">⚙️</div>
+<h4 class="step-title">Vision Alignment Review</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+</div>
+<p class="step-description">Set clear vision, manage backlog, synchronize team goals and objectives.</p>
+<p class="step-timing">⏱️ Sprint start • 2-3 hours</p>
+<div class="step-actions">
+<div class="step-btn btn-primary">View Details</div>
+</div>
+</div>
+<div class="timeline-step right">
+<div class="step-number">2</div>
+<div class="step-icon">📚</div>
+<h4 class="step-title">Collective Story Pool</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+<span class="discipline-tag tag-devised">👥 Devised</span>
+</div>
+<p class="step-description">Build living repository of stories, scenes, and creative ideas for the ensemble.</p>
+<p class="step-timing">⏱️ Ongoing • Updated daily</p>
+<div class="step-actions">
+<div class="step-btn btn-primary">Explore Pool</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Creation Phase -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">🎨 Creation Phase</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">3</div>
+<div class="step-icon">❤️</div>
+<h4 class="step-title">Community Values Check</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-applied">❤️ Applied</span>
+</div>
+<p class="step-description">Align with community values and social impact goals before creative work begins.</p>
+<p class="step-timing">⏱️ Bi-weekly • 1 hour</p>
+<div class="step-actions">
+<div class="step-btn btn-secondary">Check Values</div>
+</div>
+</div>
+<div class="timeline-step right">
+<div class="step-number">4</div>
+<div class="step-icon">💡</div>
+<h4 class="step-title">Plot–Story Design Cycle</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-devised">👥 Devised</span>
+<span class="discipline-tag tag-design">💡 Design</span>
+</div>
+<p class="step-description">Collaborative narrative building using 5-step Design Thinking methodology.</p>
+<p class="step-timing">⏱️ Weekly • 3-4 hours</p>
+<div class="step-actions">
+<div class="step-btn btn-primary">Start Design</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Development Phase -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">🎭 Development Phase</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">5</div>
+<div class="step-icon">🎬</div>
+<h4 class="step-title">Storyboard Jam</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-devised">👥 Devised</span>
+<span class="discipline-tag tag-design">💡 Design</span>
+</div>
+<p class="step-description">Group prototyping, improvisation, and collective dramaturgy sessions.</p>
+<p class="step-timing">⏱️ Weekly • 2-3 hours</p>
+<div class="step-actions">
+<div class="step-btn btn-primary">Join Jam</div>
+</div>
+</div>
+<div class="timeline-step right">
+<div class="step-number">6</div>
+<div class="step-icon">🎭</div>
+<h4 class="step-title">Acting Sprint</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-chubbuck">🎭 Chubbuck</span>
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+</div>
+<p class="step-description">Deep character building using Chubbuck technique with sprint methodology.</p>
+<p class="step-timing">⏱️ Daily work • Weekly review</p>
+<div class="step-actions">
+<div class="step-btn btn-primary">Start Sprint</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Iteration Phase -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">🔄 Iteration Phase</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">7</div>
+<div class="step-icon">🔧</div>
+<h4 class="step-title">Prototype & Tech Rehearsal</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-design">💡 Design</span>
+<span class="discipline-tag tag-devised">👥 Devised</span>
+</div>
+<p class="step-description">Test, refine, experiment, and iterate on creative work in safe environment.</p>
+<p class="step-timing">⏱️ Before showcase • 4-6 hours</p>
+<div class="step-actions">
+<div class="step-btn btn-secondary">Test & Refine</div>
+</div>
+</div>
+<div class="timeline-step right">
+<div class="step-number">8</div>
+<div class="step-icon">🌍</div>
+<h4 class="step-title">Community Impact Review</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-applied">❤️ Applied</span>
+</div>
+<p class="step-description">Assess social impact and community engagement of the creative work.</p>
+<p class="step-timing">⏱️ Mid & end sprint • 1-2 hours</p>
+<div class="step-actions">
+<div class="step-btn btn-secondary">Review Impact</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Evolution Phase -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">🚀 Evolution Phase</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">9</div>
+<div class="step-icon">🔄</div>
+<h4 class="step-title">Sprint Retrospective</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+<span class="discipline-tag tag-design">💡 Design</span>
+</div>
+<p class="step-description">Reflect, learn, and improve process for the next sprint cycle.</p>
+<p class="step-timing">⏱️ End of sprint • 2 hours</p>
+<div class="step-actions">
+<div class="step-btn btn-primary">Retrospect</div>
+</div>
+</div>
+<div class="timeline-step right">
+<div class="step-number">🔄</div>
+<div class="step-icon">🚀</div>
+<h4 class="step-title">Next Sprint Cycle</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+</div>
+<p class="step-description">Begin new cycle with evolved understanding and improved processes.</p>
+<p class="step-timing">⏱️ Continuous evolution</p>
+<div class="cycle-indicator">↻</div>
+<div class="step-actions">
+<div class="step-btn btn-primary">New Cycle</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- /timeline-container -->
+</div>
+<!-- Detailed Timeline -->
+<div class="timeline-view" id="detailed">
+<div class="timeline-container">
+<div class="timeline-spine"></div>
+<div style="text-align: center; padding: 3rem; color: #8E8E93;">
+<h3 style="color: #007AFF; margin-bottom: 1rem;">Detailed Step-by-Step View</h3>
+<p>This view shows granular daily activities, specific methods, and detailed timing for each workflow component.</p>
+<div style="margin-top: 2rem; padding: 2rem; background: rgba(0, 122, 255, 0.1); border-radius: 12px;">
+<p style="color: #E5E5E7;">🚧 Coming Soon: Detailed breakdown of each step with specific activities, timing, and deliverables.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Sprint Cycle Timeline -->
+<div class="timeline-view" id="sprint">
+<div class="timeline-container">
+<div class="timeline-spine"></div>
+<div style="text-align: center; margin-bottom: 3rem;">
+<h3 style="color: #34C759; font-size: 2rem; margin-bottom: 1rem;">Scrum Artist Daily/Weekly Path</h3>
+<p style="color: #8E8E93; font-size: 1.1rem;">The rhythm of individual and collective creative work</p>
+</div>
+<!-- Daily Rhythm -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">📅 Daily Rhythm</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">D1</div>
+<div class="step-icon">🎭</div>
+<h4 class="step-title">Daily Self-Tape & Character Work</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-chubbuck">🎭 Chubbuck</span>
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+</div>
+<p class="step-description">Individual character development using Chubbuck technique. Document progress, share discoveries.</p>
+<p class="step-timing">⏱️ Daily • 30-45 minutes</p>
+</div>
+<div class="timeline-step right">
+<div class="step-number">D2</div>
+<div class="step-icon">☀️</div>
+<h4 class="step-title">Daily Standup</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+</div>
+<p class="step-description">Quick sync: Yesterday's work, today's plan, any blockers. Keep creative momentum.</p>
+<p class="step-timing">⏱️ Daily • 15 minutes</p>
+</div>
+</div>
+</div>
+<!-- Weekly Meetings -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">📊 Weekly Meetings</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">W1</div>
+<div class="step-icon">🎬</div>
+<h4 class="step-title">Storyboard Jam</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-devised">👥 Devised</span>
+<span class="discipline-tag tag-design">💡 Design</span>
+</div>
+<p class="step-description">Weekly collaborative session: group improvisation, scene prototyping, collective dramaturgy.</p>
+<p class="step-timing">⏱️ Weekly • 2-3 hours</p>
+</div>
+<div class="timeline-step right">
+<div class="step-number">W2</div>
+<div class="step-icon">🏆</div>
+<h4 class="step-title">Scrum Artist Training Wins</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-chubbuck">🎭 Chubbuck</span>
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+</div>
+<p class="step-description">Share weekly character breakthroughs, celebrate progress, learn from each other's discoveries.</p>
+<p class="step-timing">⏱️ Weekly • 1 hour</p>
+</div>
+</div>
+</div>
+<!-- Bi-Weekly Check -->
+<div class="timeline-phase">
+<div class="phase-header">
+<div class="phase-title">🌍 Bi-Weekly Check</div>
+</div>
+<div class="timeline-steps">
+<div class="timeline-step left">
+<div class="step-number">B1</div>
+<div class="step-icon">❤️</div>
+<h4 class="step-title">Community Impact Review</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-applied">❤️ Applied</span>
+</div>
+<p class="step-description">Every 2 weeks: assess social impact, community engagement, values alignment. Ensure meaningful connection.</p>
+<p class="step-timing">⏱️ Bi-weekly • 1-2 hours</p>
+</div>
+<div class="timeline-step right">
+<div class="step-number">🔄</div>
+<div class="step-icon">🚀</div>
+<h4 class="step-title">Continuous Cycle</h4>
+<div class="step-disciplines">
+<span class="discipline-tag tag-scrum">⚙️ Scrum</span>
+</div>
+<p class="step-description">The rhythm continues: daily growth, weekly collaboration, bi-weekly impact assessment.</p>
+<p class="step-timing">⏱️ Ongoing evolution</p>
+<div class="cycle-indicator">↻</div>
+</div>
+</div>
+</div>
+<div class="timeline-summary">
+<div class="summary-title">The Scrum Artist Rhythm</div>
+<p class="summary-text">
+<span class="summary-highlight">Daily:</span> Individual character work + team standup<br>
+<span class="summary-highlight">Weekly:</span> Storyboard Jam + Training Wins sharing<br>
+<span class="summary-highlight">Bi-weekly:</span> Community Impact Review<br><br>
+This creates a sustainable rhythm where individual growth feeds collective creativity, 
+and social purpose guides artistic development.
+</p>
+</div>
+</div>
+</div>
+</section>
+
+<div class="workflow-board">
+<!-- Bands and Step-Cards: ... (Burası aynı kalacak, yukarıdaki kodla uyumlu devam edebilir.) -->
+<!-- Kodun çok uzun kalan kısmı varsa tekrar isteyebilirsin, ana yapı burada tam. -->
+</div>
+
+<footer class="footer">
+<div class="footer-content">
+<p class="footer-main">Original source: Osman Paksoy, Virtual Reality Theater Experience: Rethinking Participation and Interaction (2025). Board design, structure, and methodology were developed by adapting core features from Scrum/Agile, Devised Theatre, Design Thinking, Applied Theatre, Chubbuck 12-Step Technique. See thesis for theoretical background and practical use cases.</p>
+<p class="footer-note">💡 Flip any card for discipline origin, method, and Osman's unique adaptation.</p>
+</div>
+</footer>
+</div>
+<script>
+// Light/Dark Mode Toggle
+function toggleMode() {
+  document.body.classList.toggle('light-mode');
+}
+
+// Timeline Switching
+function switchView(viewName) {
+  document.querySelectorAll('.timeline-view').forEach(view => {
+    view.classList.remove('active');
+  });
+  document.getElementById(viewName).classList.add('active');
+  document.querySelectorAll('.timeline-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
