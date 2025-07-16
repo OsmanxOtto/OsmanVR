@@ -1,105 +1,959 @@
+	
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Virtual Acting Ensemble Workflow</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
-* {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:'Inter',sans-serif;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 50%,#16213e 100%);color:#fff;min-height:100vh;overflow-x:auto;}
-.container {max-width:1400px;margin:0 auto;padding:2rem;}
-.header {text-align:center;margin-bottom:3rem;position:relative;}
-.header::before {content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:200px;height:200px;background:radial-gradient(circle,rgba(0,122,255,0.1) 0%,transparent 70%);border-radius:50%;z-index:-1;}
-.main-title {font-size:3.5rem;font-weight:800;background:linear-gradient(135deg,#007AFF,#34C759,#FFD60A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.5rem;letter-spacing:-0.02em;}
-.subtitle {font-size:1.2rem;color:#8E8E93;font-weight:400;margin-bottom:2rem;}
-.color-legend {display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:3rem;}
-.legend-item {display:flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;background:rgba(255,255,255,0.05);border-radius:12px;border:1px solid rgba(255,255,255,0.1);transition:all 0.3s ease;cursor:pointer;}
-.legend-icon {font-size:1.2rem;}
-.legend-dot {width:12px;height:12px;border-radius:50%;flex-shrink:0;}
-.legend-text {font-size:0.9rem;font-weight:500;}
-.manifesto {background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:2rem;margin-bottom:3rem;position:relative;overflow:hidden;}
-.manifesto::before {content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FF3B30,#007AFF,#34C759,#FFD60A,#AF52DE);}
-.manifesto h2 {font-size:1.8rem;font-weight:700;margin-bottom:1rem;color:#007AFF;}
-.manifesto p {line-height:1.7;color:#E5E5E7;margin-bottom:1rem;}
-.core-value {font-weight:600;color:#34C759;font-size:1.1rem;}
-/* --- BOARD & TIMELINE REVIZE --- */
-/* Timeline improvement */
-.smart-timeline {background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:3rem 2rem;margin:3rem 0;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.23);}
-.smart-timeline::before {content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#FF3B30,#007AFF,#34C759,#FFD60A,#AF52DE);z-index:1;animation:pulseLine 3s infinite linear;}
-@keyframes pulseLine {0%{opacity:0.6;}50%{opacity:1;}100%{opacity:0.6;}}
-.timeline-header{text-align:center;margin-bottom:3rem;}
-.timeline-title{font-size:2rem;font-weight:700;color:#007AFF;margin-bottom:1rem;}
-.timeline-subtitle{color:#8E8E93;font-size:1.1rem;margin-bottom:2rem;}
-.timeline-controls{display:flex;justify-content:center;gap:1rem;margin-bottom:2rem;}
-.timeline-btn{padding:0.75rem 1.5rem;background:rgba(0,122,255,0.2);border:1px solid #007AFF;border-radius:25px;color:#007AFF;cursor:pointer;transition:all 0.3s ease;font-weight:600;font-size:0.9rem;user-select:none;}
-.timeline-btn:hover, .timeline-btn.active{background:rgba(0,122,255,0.4);transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,122,255,0.3);}
-.timeline-container{position:relative;max-width:1200px;margin:0 auto;}
-.timeline-spine{position:absolute;left:50%;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#FF3B30,#007AFF,#34C759,#FFD60A,#AF52DE);transform:translateX(-50%);border-radius:2.5px;box-shadow:0 0 20px rgba(0,122,255,0.3);z-index:0;animation:pulseSpine 5s infinite linear;}
-@keyframes pulseSpine {0%{box-shadow:0 0 20px #007AFF44;}50%{box-shadow:0 0 40px #34C75999;}100%{box-shadow:0 0 20px #007AFF44;}}
-/* Workflow Board improvements */
-.workflow-board{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-bottom:3rem;align-items:start;}
-.band{background:linear-gradient(135deg,rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.02) 100%);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:1.25rem;position:relative;display:flex;flex-direction:column;height:100%;box-shadow:0 6px 24px rgba(0,0,0,0.15);}
-.band-title{font-size:1.4rem;font-weight:700;margin-bottom:1.5rem;text-align:center;color:#007AFF;position:relative;flex-shrink:0;}
-.band-title::after{content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);width:60px;height:2px;background:linear-gradient(90deg,#007AFF,#34C759);border-radius:1px;}
-.band-content{display:flex;flex-direction:column;flex:1;gap:1.5rem;}
-.step-card{background:rgba(0,0,0,0.32);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:20px;position:relative;transition:all 0.3s ease;cursor:pointer;perspective:1000px;min-height:240px;width:100%;display:flex;flex-direction:column;box-shadow:0 3px 24px rgba(34,37,69,0.10);}
-.step-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:0 12px 36px rgba(0,0,0,0.24);border-color:rgba(255,255,255,0.3);}
-.card-inner{position:relative;width:100%;height:100%;text-align:left;transition:transform 0.6s;transform-style:preserve-3d;}
-.step-card.flipped .card-inner{transform:rotateY(180deg);}
-.card-front,.card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;top:0;left:0;display:flex;flex-direction:column;justify-content:space-between;}
-.card-back{transform:rotateY(180deg);background:rgba(0,122,255,0.13);border-radius:8px;padding:1.25rem;border:1px solid rgba(0,122,255,0.2);}
-.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;min-height:32px;}
-.icon-ribbon{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;}
-.icon-ribbon .discipline-tag{font-size:20px;padding:0;border:none;background:none;display:flex;align-items:center;justify-content:center;width:24px;height:24px;}
-.step-title{font-size:1.1rem;font-weight:600;margin-bottom:8px;color:#fff;line-height:1.3;}
-.step-function{font-size:0.98rem;color:#E5E5E7;line-height:1.55;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;max-height:4.3em;}
-.card-controls{position:absolute;bottom:20px;left:20px;right:20px;display:flex;gap:8px;z-index:10;background:rgba(0,0,0,0.77);padding:8px;border-radius:8px;backdrop-filter:blur(9px);}
-.card-control-btn{flex:1;height:32px;background:rgba(0,122,255,0.18);border:1px solid #007AFF;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:#007AFF;transition:all 0.3s ease;cursor:pointer;backdrop-filter:blur(8px);}
-.card-control-btn:hover{background:rgba(0,122,255,0.4);transform:scale(1.07);box-shadow:0 4px 15px rgba(0,122,255,0.13);}
-.expand-btn{border-color:#34C759;color:#34C759;background:rgba(52,199,89,0.18);}
-.expand-btn:hover{background:rgba(52,199,89,0.31);box-shadow:0 4px 12px rgba(52,199,89,0.15);}
-.card-front .info-btn {position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.2); border: none; border-radius: 50%; width: 28px; height: 28px; color: #34C759; font-size: 1.2rem; cursor: pointer; z-index: 11; transition: background 0.2s;}
-.card-front .info-btn:hover {background: rgba(52,199,89,0.2);}
-.card-back h4{color:#007AFF;font-size:1rem;margin-bottom:0.5rem;}
-.card-back p{color:#E5E5E7;font-size:0.93rem;line-height:1.5;}
-/* Timeline step improvements */
-.timeline-step{background:linear-gradient(135deg,rgba(0,0,0,0.44) 0%,rgba(26,26,46,0.36) 100%);border:1px solid rgba(255,255,255,0.13);border-radius:16px;padding:2rem;position:relative;transition:all 0.3s ease;cursor:pointer;backdrop-filter:blur(8px);margin-bottom:2.1rem;min-height:230px;display:flex;flex-direction:column;}
-.timeline-step:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 20px 40px rgba(0,0,0,0.34);border-color:rgba(255,255,255,0.23);}
-.timeline-step .step-icon{font-size:2.3rem;margin-bottom:0.7rem;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.28));}
-.timeline-step .step-number{position:absolute;top:-13px;left:1.5rem;background:linear-gradient(135deg,#007AFF,#34C759);color:white;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.08rem;box-shadow:0 4px 13px rgba(0,122,255,0.15);border:2.2px solid #1a1a2e;}
-/* Responsive Board/Timeline (Mobile & Tablet) */
-@media (max-width:1200px){.workflow-board{grid-template-columns:repeat(2,1fr);gap:1.1rem;}}
-@media (max-width:850px){.workflow-board{grid-template-columns:1fr;gap:1rem;}}
-@media (max-width:768px){.main-title{font-size:2.5rem;}.color-legend{gap:1rem;}.smart-timeline{padding:2rem 1rem;}.timeline-controls{flex-direction:column;align-items:center;}.timeline-btn{width:200px;text-align:center;}.step-icon{font-size:2rem;}.step-title{font-size:1.2rem;}.workflow-board{grid-template-columns:1fr;gap:0.7rem;}.step-card{min-height:160px;}}
-/* Glassmorphism for manifesto/side sections */
-.glass-section {background:rgba(255,255,255,0.08);backdrop-filter:blur(8px);border-radius:18px;border:1px solid rgba(52,199,89,0.12);padding:1.7rem;margin-bottom:2rem;}
-/* Light/Dark toggle */
-.toggle-mode {position:fixed;top:26px;right:36px;z-index:1200;background:rgba(0,122,255,0.08);border:1px solid #007AFF;border-radius:16px;padding:0.6rem 1.3rem;font-weight:600;color:#007AFF;cursor:pointer;box-shadow:0 2px 6px #1a1a2e22;transition:background 0.2s;}
-.toggle-mode:hover{background:rgba(0,122,255,0.18);}
-body.light-mode{background:linear-gradient(135deg,#e9ecef 0%,#f6fafd 50%,#e9ecf3 100%);color:#262b33;}
-body.light-mode .main-title{-webkit-text-fill-color:unset;background:unset;color:#007AFF;}
-body.light-mode .band,.light-mode .manifesto,.light-mode .glass-section,.light-mode .smart-timeline,.light-mode .step-card,.light-mode .timeline-step{background:rgba(255,255,255,0.8)!important;color:#262b33;}
-body.light-mode .card-control-btn{background:rgba(0,122,255,0.08);color:#007AFF;}
-body.light-mode .card-control-btn.expand-btn{color:#34C759;background:rgba(52,199,89,0.13);}
-body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AFF;}
-/* Footer, sidebar, cards ve diğerler eski canvasın tamamı devam edecek */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Inter', sans-serif;
+background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+color: #ffffff;
+min-height: 100vh;
+overflow-x: auto;
+}
+
+.container {
+max-width: 1400px;
+margin: 0 auto;
+padding: 2rem;
+}
+
+.header {
+text-align: center;
+margin-bottom: 3rem;
+position: relative;
+}
+
+.header::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 200px;
+height: 200px;
+background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);
+border-radius: 50%;
+z-index: -1;
+}
+
+.main-title {
+font-size: 3.5rem;
+font-weight: 800;
+background: linear-gradient(135deg, #007AFF, #34C759, #FFD60A);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+margin-bottom: 0.5rem;
+letter-spacing: -0.02em;
+}
+
+.subtitle {
+font-size: 1.2rem;
+color: #8E8E93;
+font-weight: 400;
+margin-bottom: 2rem;
+}
+
+.color-legend {
+display: flex;
+justify-content: center;
+gap: 1.5rem;
+flex-wrap: wrap;
+margin-bottom: 3rem;
+}
+
+.legend-item {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+padding: 0.75rem 1rem;
+background: rgba(255, 255, 255, 0.05);
+border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.1);
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.legend-item:hover {
+transform: translateY(-2px);
+background: rgba(255, 255, 255, 0.1);
+box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.legend-icon {
+font-size: 1.2rem;
+}
+
+.legend-dot {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+flex-shrink: 0;
+}
+
+.legend-text {
+font-size: 0.9rem;
+font-weight: 500;
+}
+
+.manifesto {
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 20px;
+padding: 2rem;
+margin-bottom: 3rem;
+position: relative;
+overflow: hidden;
+}
+
+.manifesto::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+background: linear-gradient(90deg, #FF3B30, #007AFF, #34C759, #FFD60A, #AF52DE);
+}
+
+.manifesto h2 {
+font-size: 1.8rem;
+font-weight: 700;
+margin-bottom: 1rem;
+color: #007AFF;
+}
+
+.manifesto p {
+line-height: 1.7;
+color: #E5E5E7;
+margin-bottom: 1rem;
+}
+
+.core-value {
+font-weight: 600;
+color: #34C759;
+font-size: 1.1rem;
+}
+
+.smart-timeline {
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 20px;
+padding: 3rem 2rem;
+margin: 3rem 0;
+position: relative;
+overflow: hidden;
+}
+
+.smart-timeline::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 3px;
+background: linear-gradient(90deg, #FF3B30, #007AFF, #34C759, #FFD60A, #AF52DE);
+}
+
+.timeline-header {
+text-align: center;
+margin-bottom: 3rem;
+}
+
+.timeline-title {
+font-size: 2rem;
+font-weight: 700;
+color: #007AFF;
+margin-bottom: 1rem;
+}
+
+.timeline-subtitle {
+color: #8E8E93;
+font-size: 1.1rem;
+margin-bottom: 2rem;
+}
+
+.timeline-controls {
+display: flex;
+justify-content: center;
+gap: 1rem;
+margin-bottom: 2rem;
+}
+
+.timeline-btn {
+padding: 0.75rem 1.5rem;
+background: rgba(0, 122, 255, 0.2);
+border: 1px solid #007AFF;
+border-radius: 25px;
+color: #007AFF;
+cursor: pointer;
+transition: all 0.3s ease;
+font-weight: 600;
+font-size: 0.9rem;
+}
+
+.timeline-btn:hover, .timeline-btn.active {
+background: rgba(0, 122, 255, 0.4);
+transform: translateY(-2px);
+box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+}
+
+.timeline-container {
+position: relative;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.timeline-spine {
+position: absolute;
+left: 50%;
+top: 0;
+bottom: 0;
+width: 4px;
+background: linear-gradient(180deg, #FF3B30, #007AFF, #34C759, #FFD60A, #AF52DE);
+transform: translateX(-50%);
+border-radius: 2px;
+box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+}
+
+.timeline-phase {
+margin-bottom: 4rem;
+position: relative;
+}
+
+.phase-header {
+text-align: center;
+margin-bottom: 2rem;
+position: relative;
+z-index: 10;
+}
+
+.phase-title {
+display: inline-block;
+padding: 1rem 2rem;
+background: linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(52, 199, 89, 0.2) 100%);
+border: 2px solid rgba(0, 122, 255, 0.5);
+border-radius: 25px;
+font-size: 1.3rem;
+font-weight: 700;
+color: #007AFF;
+position: relative;
+}
+
+.phase-title::before {
+content: '';
+position: absolute;
+left: 50%;
+bottom: -15px;
+transform: translateX(-50%);
+width: 0;
+height: 0;
+border-left: 10px solid transparent;
+border-right: 10px solid transparent;
+border-top: 10px solid rgba(0, 122, 255, 0.5);
+}
+
+.timeline-steps {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2rem;
+align-items: start;
+}
+
+.timeline-step {
+background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(26, 26, 46, 0.4) 100%);
+border: 1px solid rgba(255, 255, 255, 0.15);
+border-radius: 16px;
+padding: 2rem;
+position: relative;
+transition: all 0.3s ease;
+cursor: pointer;
+backdrop-filter: blur(10px);
+}
+
+.timeline-step:hover {
+transform: translateY(-8px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+border-color: rgba(255, 255, 255, 0.3);
+}
+
+.timeline-step.left {
+margin-right: 2rem;
+}
+
+.timeline-step.right {
+margin-left: 2rem;
+}
+
+.timeline-step::before {
+content: '';
+position: absolute;
+top: 50%;
+width: 20px;
+height: 20px;
+background: linear-gradient(135deg, #007AFF, #34C759);
+border: 3px solid #ffffff;
+border-radius: 50%;
+transform: translateY(-50%);
+box-shadow: 0 0 15px rgba(0, 122, 255, 0.5);
+}
+
+.timeline-step.left::before {
+right: -42px;
+}
+
+.timeline-step.right::before {
+left: -42px;
+}
+
+.step-number {
+position: absolute;
+top: -10px;
+left: 1.5rem;
+background: linear-gradient(135deg, #007AFF, #34C759);
+color: white;
+width: 30px;
+height: 30px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: 700;
+font-size: 0.9rem;
+box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4);
+}
+
+.step-icon {
+font-size: 2.5rem;
+margin-bottom: 1rem;
+filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.step-title {
+font-size: 1.4rem;
+font-weight: 700;
+color: #ffffff;
+margin-bottom: 0.75rem;
+line-height: 1.3;
+}
+
+.step-disciplines {
+display: flex;
+gap: 0.5rem;
+margin-bottom: 1rem;
+flex-wrap: wrap;
+}
+
+.discipline-tag {
+padding: 0.25rem 0.75rem;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 500;
+border: 1px solid;
+}
+
+.tag-scrum { background: rgba(255, 59, 48, 0.2); border-color: #FF3B30; color: #FF3B30; }
+.tag-design { background: rgba(0, 122, 255, 0.2); border-color: #007AFF; color: #007AFF; }
+.tag-devised { background: rgba(52, 199, 89, 0.2); border-color: #34C759; color: #34C759; }
+.tag-chubbuck { background: rgba(255, 214, 10, 0.2); border-color: #FFD60A; color: #FFD60A; }
+.tag-applied { background: rgba(175, 82, 222, 0.2); border-color: #AF52DE; color: #AF52DE; }
+
+.step-description {
+color: #E5E5E7;
+line-height: 1.6;
+margin-bottom: 1rem;
+font-size: 0.95rem;
+}
+
+.step-timing {
+color: #8E8E93;
+font-size: 0.85rem;
+font-style: italic;
+margin-bottom: 1rem;
+}
+
+.step-actions {
+display: flex;
+gap: 0.75rem;
+margin-top: 1.5rem;
+}
+
+.step-btn {
+padding: 0.5rem 1rem;
+border-radius: 20px;
+font-size: 0.8rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.3s ease;
+border: 1px solid;
+}
+
+.btn-primary {
+background: rgba(0, 122, 255, 0.2);
+border-color: #007AFF;
+color: #007AFF;
+}
+
+.btn-primary:hover {
+background: rgba(0, 122, 255, 0.4);
+transform: translateY(-2px);
+}
+
+.btn-secondary {
+background: rgba(52, 199, 89, 0.2);
+border-color: #34C759;
+color: #34C759;
+}
+
+.btn-secondary:hover {
+background: rgba(52, 199, 89, 0.4);
+transform: translateY(-2px);
+}
+
+.cycle-indicator {
+position: absolute;
+right: 1rem;
+top: 1rem;
+width: 40px;
+height: 40px;
+border: 2px solid #34C759;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+color: #34C759;
+animation: rotate 4s linear infinite;
+}
+
+.timeline-summary {
+background: rgba(0, 122, 255, 0.1);
+border: 1px solid rgba(0, 122, 255, 0.3);
+border-radius: 16px;
+padding: 2rem;
+margin-top: 3rem;
+text-align: center;
+}
+
+.summary-title {
+color: #007AFF;
+font-size: 1.3rem;
+font-weight: 700;
+margin-bottom: 1rem;
+}
+
+.summary-text {
+color: #E5E5E7;
+line-height: 1.6;
+font-size: 1.1rem;
+}
+
+.summary-highlight {
+color: #34C759;
+font-weight: 700;
+}
+
+.timeline-view {
+display: none;
+}
+
+.timeline-view.active {
+display: block;
+}
+
+@keyframes rotate {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 0.7; transform: scale(1); }
+50% { opacity: 1; transform: scale(1.05); }
+}
+
+.pulse {
+animation: pulse 2s infinite;
+}
+
+@media (max-width: 1024px) {
+.timeline-steps {
+grid-template-columns: 1fr;
+gap: 1.5rem;
+}
+
+.timeline-spine {
+left: 2rem;
+}
+
+.timeline-step {
+margin-left: 4rem !important;
+margin-right: 0 !important;
+}
+
+.timeline-step::before {
+left: -42px !important;
+right: auto !important;
+}
+}
+
+@media (max-width: 768px) {
+.smart-timeline {
+padding: 2rem 1rem;
+}
+
+.timeline-controls {
+flex-direction: column;
+align-items: center;
+}
+
+.timeline-btn {
+width: 200px;
+text-align: center;
+}
+
+.step-icon {
+font-size: 2rem;
+}
+
+.step-title {
+font-size: 1.2rem;
+}
+}
+
+.workflow-board {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 2rem;
+margin-bottom: 3rem;
+align-items: start;
+}
+
+.band {
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+padding: 1.25rem;
+position: relative;
+display: flex;
+flex-direction: column;
+height: 100%;
+}
+
+.band-title {
+font-size: 1.4rem;
+font-weight: 700;
+margin-bottom: 1.5rem;
+text-align: center;
+color: #007AFF;
+position: relative;
+flex-shrink: 0;
+}
+
+.band-title::after {
+content: '';
+position: absolute;
+bottom: -8px;
+left: 50%;
+transform: translateX(-50%);
+width: 60px;
+height: 2px;
+background: linear-gradient(90deg, #007AFF, #34C759);
+border-radius: 1px;
+}
+
+.band-content {
+display: flex;
+flex-direction: column;
+flex: 1;
+gap: 1.5rem;
+}
+
+.step-card {
+background: rgba(0, 0, 0, 0.3);
+border: 1px solid rgba(255, 255, 255, 0.15);
+border-radius: 12px;
+padding: 20px;
+position: relative;
+transition: all 0.3s ease;
+cursor: pointer;
+perspective: 1000px;
+height: 280px;
+width: 100%;
+display: flex;
+flex-direction: column;
+}
+
+.step-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+text-align: left;
+transition: transform 0.6s;
+transform-style: preserve-3d;
+}
+
+.step-card.flipped .card-inner {
+transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+position: absolute;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+top: 0;
+left: 0;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.card-back {
+transform: rotateY(180deg);
+background: rgba(0, 122, 255, 0.15);
+border-radius: 8px;
+padding: 1.25rem;
+border: 1px solid rgba(0, 122, 255, 0.3);
+}
+
+.card-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 12px;
+min-height: 32px;
+}
+
+.icon-ribbon {
+display: flex;
+align-items: center;
+gap: 8px;
+flex-wrap: nowrap;
+}
+
+.icon-ribbon .discipline-tag {
+font-size: 24px;
+padding: 0;
+border: none;
+background: none;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 24px;
+height: 24px;
+}
+
+.step-card .step-title {
+font-size: 1.1rem;
+font-weight: 600;
+margin-bottom: 8px;
+color: #ffffff;
+line-height: 1.3;
+}
+
+.step-function {
+font-size: 0.9rem;
+color: #E5E5E7;
+line-height: 1.4;
+flex: 1;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
+max-height: 2.8em;
+}
+
+.step-when {
+font-size: 0.85rem;
+color: #8E8E93;
+font-style: italic;
+}
+
+.card-controls {
+position: absolute;
+bottom: 20px;
+left: 20px;
+right: 20px;
+display: flex;
+gap: 8px;
+z-index: 10;
+background: rgba(0, 0, 0, 0.8);
+padding: 8px;
+border-radius: 8px;
+backdrop-filter: blur(10px);
+}
+
+.card-control-btn {
+flex: 1;
+height: 32px;
+background: rgba(0, 122, 255, 0.2);
+border: 1px solid #007AFF;
+border-radius: 6px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 0.75rem;
+color: #007AFF;
+transition: all 0.3s ease;
+cursor: pointer;
+backdrop-filter: blur(10px);
+}
+
+.text-clamp {
+max-height: 160px;
+overflow: hidden;
+position: relative;
+}
+
+.text-clamp.overflow::after {
+content: '...More';
+position: absolute;
+bottom: 0;
+right: 0;
+background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.8) 50%);
+padding-left: 20px;
+color: #007AFF;
+cursor: pointer;
+}
+
+.compact-mode .step-function {
+font-size: 0.8rem;
+}
+
+.compact-mode .icon-ribbon .discipline-tag {
+font-size: 20px;
+width: 20px;
+height: 20px;
+}
+
+.card-control-btn:hover {
+background: rgba(0, 122, 255, 0.4);
+transform: scale(1.1);
+box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+}
+
+.expand-btn {
+border-color: #34C759;
+color: #34C759;
+background: rgba(52, 199, 89, 0.2);
+}
+
+.expand-btn:hover {
+background: rgba(52, 199, 89, 0.4);
+box-shadow: 0 4px 15px rgba(52, 199, 89, 0.3);
+}
+
+.back-content h4 {
+color: #007AFF;
+font-size: 1rem;
+margin-bottom: 0.5rem;
+}
+
+.back-content p {
+color: #E5E5E7;
+font-size: 0.9rem;
+line-height: 1.5;
+}
+
+.method-detail {
+background: rgba(52, 199, 89, 0.1);
+border: 1px solid rgba(52, 199, 89, 0.3);
+border-radius: 8px;
+padding: 1rem;
+margin-top: 1rem;
+}
+
+.method-title {
+color: #34C759;
+font-weight: 600;
+font-size: 0.9rem;
+margin-bottom: 0.5rem;
+}
+
+.sidebar {
+background: linear-gradient(135deg, rgba(52, 199, 89, 0.08) 0%, rgba(52, 199, 89, 0.02) 100%);
+border: 1px solid rgba(52, 199, 89, 0.2);
+border-radius: 16px;
+padding: 2rem;
+margin: 3rem 0;
+}
+
+.sidebar-title {
+color: #34C759;
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 1rem;
+}
+
+.sidebar-description p {
+color: #E5E5E7;
+line-height: 1.6;
+margin-bottom: 0.75rem;
+}
+
+.method-cards {
+margin: 3rem 0;
+}
+
+.section-title {
+font-size: 1.8rem;
+font-weight: 700;
+color: #007AFF;
+text-align: center;
+margin-bottom: 2rem;
+}
+
+.method-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+gap: 2rem;
+}
+
+.method-card {
+background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.02) 100%);
+border: 1px solid rgba(0, 122, 255, 0.2);
+border-radius: 12px;
+padding: 1.5rem;
+transition: all 0.3s ease;
+}
+
+.method-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 12px 30px rgba(0, 122, 255, 0.2);
+}
+
+.method-card-title {
+color: #007AFF;
+font-size: 1.2rem;
+font-weight: 600;
+margin-bottom: 1rem;
+}
+
+.method-steps {
+list-style: none;
+padding: 0;
+margin-bottom: 1rem;
+}
+
+.method-steps li {
+color: #E5E5E7;
+padding: 0.5rem 0;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+font-size: 0.9rem;
+}
+
+.method-steps li:last-child {
+border-bottom: none;
+}
+
+.method-ref {
+color: #8E8E93;
+font-size: 0.85rem;
+font-style: italic;
+}
+
+.footer {
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 16px;
+padding: 2rem;
+margin-top: 3rem;
+text-align: center;
+}
+
+.footer-main {
+color: #E5E5E7;
+line-height: 1.6;
+margin-bottom: 1rem;
+font-size: 0.9rem;
+}
+
+.footer-note {
+color: #007AFF;
+font-weight: 500;
+font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+.workflow-board {
+grid-template-columns: repeat(2, 1fr);
+gap: 1rem;
+}
+}
+
+@media (max-width: 768px) {
+.main-title {
+font-size: 2.5rem;
+}
+
+.color-legend {
+gap: 1rem;
+}
+
+.workflow-board {
+grid-template-columns: 1fr;
+gap: 1rem;
+}
+
+.step-card {
+min-height: 180px;
+}
+}
 </style>
 </head>
 <body>
-<button class="toggle-mode" onclick="toggleMode()">☾/☀️</button>
 <div class="container">
 <header class="header">
 <h1 class="main-title">Virtual Acting Ensemble Workflow</h1>
 <p class="subtitle">A Next-Gen Workflow for Digital Located Theatre (Hawthorne, 2022)</p>
+
 <div class="color-legend">
-<div class="legend-item"><span class="legend-icon">⚙️</span><div class="legend-dot" style="background-color:#FF3B30"></div><span class="legend-text">Scrum/Agile</span></div>
-<div class="legend-item"><span class="legend-icon">💡</span><div class="legend-dot" style="background-color:#007AFF"></div><span class="legend-text">Design Thinking</span></div>
-<div class="legend-item"><span class="legend-icon">👥</span><div class="legend-dot" style="background-color:#34C759"></div><span class="legend-text">Devised Theatre</span></div>
-<div class="legend-item"><span class="legend-icon">🎭</span><div class="legend-dot" style="background-color:#FFD60A"></div><span class="legend-text">Chubbuck</span></div>
-<div class="legend-item"><span class="legend-icon">❤️</span><div class="legend-dot" style="background-color:#AF52DE"></div><span class="legend-text">Applied Theatre</span></div>
+<div class="legend-item">
+<span class="legend-icon">⚙️</span>
+<div class="legend-dot" style="background-color: #FF3B30;"></div>
+<span class="legend-text">Scrum/Agile</span>
+</div>
+<div class="legend-item">
+<span class="legend-icon">💡</span>
+<div class="legend-dot" style="background-color: #007AFF;"></div>
+<span class="legend-text">Design Thinking</span>
+</div>
+<div class="legend-item">
+<span class="legend-icon">👥</span>
+<div class="legend-dot" style="background-color: #34C759;"></div>
+<span class="legend-text">Devised Theatre</span>
+</div>
+<div class="legend-item">
+<span class="legend-icon">🎭</span>
+<div class="legend-dot" style="background-color: #FFD60A;"></div>
+<span class="legend-text">Chubbuck</span>
+</div>
+<div class="legend-item">
+<span class="legend-icon">❤️</span>
+<div class="legend-dot" style="background-color: #AF52DE;"></div>
+<span class="legend-text">Applied Theatre</span>
+</div>
 </div>
 </header>
+
 <section class="manifesto">
 <h2>Manifesto: Why This Ensemble?</h2>
 <p>The Virtual Acting Ensemble Workflow reinvents digital-located theatre. We fuse structure (Agile/Scrum backbone), co-creation (Devised), social vision (Applied Theatre), creative iteration (Design Thinking), and deep character work (Chubbuck). Every tool and milestone comes from a real discipline—no generic steps. The mission: a modular, transparent, and sustainable process giving every artist creative agency, every team clarity, and every project true engagement—wherever, whenever.</p>
@@ -110,18 +964,19 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <div class="timeline-header">
 <h3 class="timeline-title">Smart Ensemble Timeline</h3>
 <p class="timeline-subtitle">Interactive workflow visualization with multiple perspectives</p>
+
 <div class="timeline-controls">
 <div class="timeline-btn active" onclick="switchView('overview')">📊 Overview</div>
 <div class="timeline-btn" onclick="switchView('detailed')">🔍 Detailed Steps</div>
 <div class="timeline-btn" onclick="switchView('sprint')">🚀 Sprint Cycle</div>
 </div>
 </div>
+
 <!-- Overview Timeline -->
 <div class="timeline-view active" id="overview">
 <div class="timeline-container">
 <div class="timeline-spine"></div>
-<!-- ========== PHASES ========== -->
-<!-- Foundation Phase -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">🎯 Foundation Phase</div>
@@ -140,6 +995,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <div class="step-btn btn-primary">View Details</div>
 </div>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">2</div>
 <div class="step-icon">📚</div>
@@ -156,7 +1012,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
-<!-- Creation Phase -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">🎨 Creation Phase</div>
@@ -175,6 +1031,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <div class="step-btn btn-secondary">Check Values</div>
 </div>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">4</div>
 <div class="step-icon">💡</div>
@@ -191,7 +1048,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
-<!-- Development Phase -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">🎭 Development Phase</div>
@@ -211,6 +1068,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <div class="step-btn btn-primary">Join Jam</div>
 </div>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">6</div>
 <div class="step-icon">🎭</div>
@@ -227,7 +1085,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
-<!-- Iteration Phase -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">🔄 Iteration Phase</div>
@@ -247,6 +1105,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <div class="step-btn btn-secondary">Test & Refine</div>
 </div>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">8</div>
 <div class="step-icon">🌍</div>
@@ -262,7 +1121,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
-<!-- Evolution Phase -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">🚀 Evolution Phase</div>
@@ -282,9 +1141,10 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <div class="step-btn btn-primary">Retrospect</div>
 </div>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">🔄</div>
-<div class="step-icon">🚀</div>
+<div class="step-icon pulse">🚀</div>
 <h4 class="step-title">Next Sprint Cycle</h4>
 <div class="step-disciplines">
 <span class="discipline-tag tag-scrum">⚙️ Scrum</span>
@@ -299,8 +1159,8 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
-<!-- /timeline-container -->
 </div>
+
 <!-- Detailed Timeline -->
 <div class="timeline-view" id="detailed">
 <div class="timeline-container">
@@ -314,15 +1174,17 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
+
 <!-- Sprint Cycle Timeline -->
 <div class="timeline-view" id="sprint">
 <div class="timeline-container">
 <div class="timeline-spine"></div>
+
 <div style="text-align: center; margin-bottom: 3rem;">
 <h3 style="color: #34C759; font-size: 2rem; margin-bottom: 1rem;">Scrum Artist Daily/Weekly Path</h3>
 <p style="color: #8E8E93; font-size: 1.1rem;">The rhythm of individual and collective creative work</p>
 </div>
-<!-- Daily Rhythm -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">📅 Daily Rhythm</div>
@@ -339,6 +1201,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <p class="step-description">Individual character development using Chubbuck technique. Document progress, share discoveries.</p>
 <p class="step-timing">⏱️ Daily • 30-45 minutes</p>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">D2</div>
 <div class="step-icon">☀️</div>
@@ -351,7 +1214,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
-<!-- Weekly Meetings -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">📊 Weekly Meetings</div>
@@ -368,6 +1231,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <p class="step-description">Weekly collaborative session: group improvisation, scene prototyping, collective dramaturgy.</p>
 <p class="step-timing">⏱️ Weekly • 2-3 hours</p>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">W2</div>
 <div class="step-icon">🏆</div>
@@ -381,7 +1245,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
-<!-- Bi-Weekly Check -->
+
 <div class="timeline-phase">
 <div class="phase-header">
 <div class="phase-title">🌍 Bi-Weekly Check</div>
@@ -397,9 +1261,10 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 <p class="step-description">Every 2 weeks: assess social impact, community engagement, values alignment. Ensure meaningful connection.</p>
 <p class="step-timing">⏱️ Bi-weekly • 1-2 hours</p>
 </div>
+
 <div class="timeline-step right">
 <div class="step-number">🔄</div>
-<div class="step-icon">🚀</div>
+<div class="step-icon pulse">🚀</div>
 <h4 class="step-title">Continuous Cycle</h4>
 <div class="step-disciplines">
 <span class="discipline-tag tag-scrum">⚙️ Scrum</span>
@@ -410,6 +1275,7 @@ body.light-mode .footer{background:rgba(255,255,255,0.88)!important;color:#007AF
 </div>
 </div>
 </div>
+
 <div class="timeline-summary">
 <div class="summary-title">The Scrum Artist Rhythm</div>
 <p class="summary-text">
@@ -422,12 +1288,413 @@ and social purpose guides artistic development.
 </div>
 </div>
 </div>
+
+
 </section>
 
 <div class="workflow-board">
-<!-- Bands and Step-Cards: ... (Burası aynı kalacak, yukarıdaki kodla uyumlu devam edebilir.) -->
-<!-- Kodun çok uzun kalan kısmı varsa tekrar isteyebilirsin, ana yapı burada tam. -->
+<div class="band">
+<h3 class="band-title">Planning & Foundation</h3>
+<div class="band-content">
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-scrum">⚙️</span>
 </div>
+</div>
+<h4 class="step-title">Vision Alignment Review</h4>
+<div class="step-function text-clamp">Process leader: sets vision, manages backlog, synchronizes the team.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Inspired by Scrum/Agile (process backbone); see Osman Paksoy, VR Theater Experience, 2025.</p>
+<p><strong>SCRUM:</strong> Sprint-based, process-driven. Product Owner keeps team on track.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-scrum">⚙️</span>
+<span class="discipline-tag tag-devised">👥</span>
+</div>
+</div>
+<h4 class="step-title">Collective Story Pool</h4>
+<div class="step-function text-clamp">Living, evolving story & scene bank.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Inspired by Scrum (Backlog), Devised (collective idea pool).</p>
+<p>A collaborative, ever-updating idea repository.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-applied">❤️</span>
+</div>
+</div>
+<h4 class="step-title">Community Values Check</h4>
+<div class="step-function text-clamp">Checks group values, vision, community purpose.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Inspired by Applied Theatre; review of values/social alignment.</p>
+<p>Biweekly collective check-in for vision and values.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="band">
+<h3 class="band-title">Creation & Development</h3>
+<div class="band-content">
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-devised">👥</span>
+<span class="discipline-tag tag-design">💡</span>
+</div>
+</div>
+<h4 class="step-title">Plot–Story Design Cycle</h4>
+<div class="step-function text-clamp">Group selection & build of plot/scenes.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Inspired by Devised Theatre and Design Thinking (5-step cycle).</p>
+<p>Creates a collective narrative via rapid ideation, prototyping, testing.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-scrum">⚙️</span>
+<span class="discipline-tag tag-chubbuck">🎭</span>
+</div>
+</div>
+<h4 class="step-title">Scrum Artist</h4>
+<div class="step-function text-clamp">Builds, documents, and shares character work.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Inspired by Scrum (Dev Team), Chubbuck (12-step/character method).</p>
+<p>Daily/weekly self-tape + character log = transparent, unique progression.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-chubbuck">🎭</span>
+<span class="discipline-tag tag-design">💡</span>
+</div>
+</div>
+<h4 class="step-title">Acting Sprint</h4>
+<div class="step-function text-clamp">Deep, focused character building.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Chubbuck Technique (12-step approach) + 3-Step DT.</p>
+<p>Sprint = character growth, real-time collective feedback.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-devised">👥</span>
+<span class="discipline-tag tag-scrum">⚙️</span>
+<span class="discipline-tag tag-design">💡</span>
+</div>
+</div>
+<h4 class="step-title">Storyboard Jam</h4>
+<div class="step-function text-clamp">Group prototyping, improv, collective dramaturgy.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Devised Theatre (ensemble creation), Scrum (review), DT (test).</p>
+<p>Every ready character brings new energy to collaborative scene-making.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="band">
+<h3 class="band-title">Performance & Iteration</h3>
+<div class="band-content">
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-scrum">⚙️</span>
+</div>
+</div>
+<h4 class="step-title">Daily Standups</h4>
+<div class="step-function text-clamp">Quick daily sync: progress, blockers, next steps.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Classic Scrum daily standup adapted for creative teams.</p>
+<p>Maintains momentum and identifies issues early.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-applied">❤️</span>
+</div>
+</div>
+<h4 class="step-title">Community Impact Review</h4>
+<div class="step-function text-clamp">Assess social impact and community engagement.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Applied Theatre methodology focusing on social impact and community engagement.</p>
+<p>Ensures work serves broader social purposes beyond entertainment.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-scrum">⚙️</span>
+<span class="discipline-tag tag-design">💡</span>
+</div>
+</div>
+<h4 class="step-title">Sprint Retrospective</h4>
+<div class="step-function text-clamp">Reflect, learn, improve process for next sprint.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Scrum retrospective combined with Design Thinking's learning mindset.</p>
+<p>Continuous improvement through structured reflection.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="band">
+<h3 class="band-title">Testing & Feedback</h3>
+<div class="band-content">
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-design">💡</span>
+<span class="discipline-tag tag-devised">👥</span>
+</div>
+</div>
+<h4 class="step-title">Prototype & Tech Rehearsal</h4>
+<div class="step-function text-clamp">Test, refine, experiment, iterate.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Design Thinking (Prototype/Test), Devised (workshopping).</p>
+<p>Safe space for creative failure, learning, collective quality control.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-scrum">⚙️</span>
+<span class="discipline-tag tag-chubbuck">🎭</span>
+</div>
+</div>
+<h4 class="step-title">Daily Self-Tape & Sharing</h4>
+<div class="step-function text-clamp">Daily self-log and feedback sharing.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Inspired by Agile Standup & Chubbuck journaling.</p>
+<p>Individual progress is visible and feeds back into group learning.</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+<div class="step-card">
+<div class="card-inner">
+<div class="card-front">
+<div class="card-header">
+<div class="icon-ribbon">
+<span class="discipline-tag tag-applied">❤️</span>
+<span class="discipline-tag tag-scrum">⚙️</span>
+</div>
+</div>
+<h4 class="step-title">Vision Alignment Review</h4>
+<div class="step-function text-clamp">Ensemble reviews values, vision, social impact.</div>
+</div>
+<div class="card-back">
+<div class="back-content">
+<h4>Source & Inspiration</h4>
+<p>Inspired by Applied Theatre (social alignment), Agile (retro).</p>
+<p>'What are we keeping? What's holding us back? Are we aligned?'</p>
+</div>
+</div>
+</div>
+<div class="card-controls">
+<div class="card-control-btn expand-btn" onclick="showDetails(this.closest('.step-card'))">🔍 Details</div>
+<div class="card-control-btn" onclick="flipCard(this.closest('.step-card'))">ℹ️ Info</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<aside class="sidebar">
+<div class="sidebar-content">
+<h3 class="sidebar-title">Scrum Artist Daily/Weekly Path</h3>
+<div class="sidebar-description">
+<p><strong>1) Daily:</strong> Self-tape using Quick Character Build (3-Step DT + Chubbuck).</p>
+<p><strong>2) Weekly:</strong> Join Storyboard Jam (5-Step DT), Acting Sprint (character deep dive), share all discoveries.</p>
+<p><strong>3) Biweekly:</strong> Participate in Vision Alignment Review to align personal and group goals.</p>
+<p><strong>4) Result:</strong> Feedback and progress are visible and cumulative.</p>
+</div>
+</div>
+</aside>
+
+<section class="method-cards">
+<h3 class="section-title">Core Method Cards</h3>
+<div class="method-grid">
+<div class="method-card">
+<h4 class="method-card-title">Plot–Story Design (5-Step DT)</h4>
+<ul class="method-steps">
+<li>Empathize: Understand audience/context</li>
+<li>Define: Story/scene goal</li>
+<li>Ideate: Brainstorm new plot</li>
+<li>Prototype: Try scenes</li>
+<li>Test: Review, feedback, iterate</li>
+</ul>
+<p class="method-ref">Used in: Storyboard Jam, Creative Cycle</p>
+</div>
+
+<div class="method-card">
+<h4 class="method-card-title">Quick Character Build (3-Step DT)</h4>
+<ul class="method-steps">
+<li>Empathize: Character emotion/context</li>
+<li>Define: Wants, obstacles</li>
+<li>Ideate: Tactics, actions</li>
+</ul>
+<p class="method-ref">Used in: Acting Sprint, Scrum Artist, Daily Self-Tape</p>
+</div>
+</div>
+</section>
 
 <footer class="footer">
 <div class="footer-content">
@@ -436,21 +1703,260 @@ and social purpose guides artistic development.
 </div>
 </footer>
 </div>
+
 <script>
-// Light/Dark Mode Toggle
-function toggleMode() {
-  document.body.classList.toggle('light-mode');
+function flipCard(card) {
+card.classList.toggle('flipped');
 }
 
-// Timeline Switching
-function switchView(viewName) {
-  document.querySelectorAll('.timeline-view').forEach(view => {
-    view.classList.remove('active');
-  });
-  document.getElementById(viewName).classList.add('active');
-  document.querySelectorAll('.timeline-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+function showDetails(card) {
+const title = card.querySelector('.step-title').textContent;
+
+let detailsText = '';
+
+switch(title) {
+case 'Vision Alignment Review':
+detailsText = '🎯 VISION ALIGNMENT REVIEW\n\n📋 What it is:\nSprint Planning session where the team sets clear goals, prioritizes backlog items, and defines success metrics. Team synchronization and vision alignment.\n\n⏰ When: Sprint start • 2-3 hours\n\n🎭 Method: Scrum/Agile methodology\n- Review previous sprint outcomes\n- Set new sprint goals\n- Prioritize story backlog\n- Assign roles and responsibilities\n- Define "done" criteria\n\n💡 Why it works: Creates shared understanding and clear direction for the entire team.';
+break;
+case 'Collective Story Pool':
+detailsText = '📚 COLLECTIVE STORY POOL\n\n📋 What it is:\nLiving repository of stories, scenes, character ideas, and creative concepts. Updated daily by all team members. Serves as creative backlog for future sprints and projects.\n\n⏰ When: Ongoing • Updated daily\n\n🎭 Method: Scrum (Product Backlog) + Devised Theatre\n- Everyone contributes ideas\n- Stories are tagged and categorized\n- Regular review and refinement\n- Democratic selection process\n\n💡 Why it works: Ensures no creative idea is lost and gives everyone ownership in the creative process.';
+break;
+case 'Community Values Check':
+detailsText = '❤️ COMMUNITY VALUES CHECK\n\n📋 What it is:\nBi-weekly review of social impact goals, community alignment, and values assessment. Ensures work serves broader purpose beyond entertainment.\n\n⏰ When: Bi-weekly • 1 hour\n\n🎭 Method: Applied Theatre methodology\n- Review community impact goals\n- Assess social relevance of work\n- Check alignment with values\n- Adjust direction if needed\n\n💡 Why it works: Keeps the ensemble grounded in social purpose and community connection.';
+break;
+case 'Plot–Story Design Cycle':
+detailsText = '💡 PLOT-STORY DESIGN CYCLE\n\n📋 What it is:\n5-Step Design Thinking process for collaborative narrative building.\n\n⏰ When: Weekly • 3-4 hours\n\n🎭 Method: Design Thinking + Devised Theatre\n1. EMPATHIZE: Understand audience/context\n2. DEFINE: Story/scene goals\n3. IDEATE: Brainstorm plot elements\n4. PROTOTYPE: Try scenes\n5. TEST: Review, feedback, iterate\n\n💡 Why it works: Systematic approach to story creation that includes audience perspective and iterative improvement.';
+break;
+case 'Scrum Artist':
+detailsText = '🎭 SCRUM ARTIST\n\n📋 What it is:\nDaily character work using Chubbuck technique, weekly self-tape sharing, transparent progress tracking. Combines individual development with team collaboration.\n\n⏰ When: Daily work • Weekly sharing\n\n🎭 Method: Chubbuck Technique + Scrum transparency\n- Daily character development\n- Self-tape documentation\n- Weekly progress sharing\n- Peer feedback and support\n\n💡 Why it works: Individual growth becomes visible and feeds back into collective creativity.';
+break;
+case 'Acting Sprint':
+detailsText = '🎬 ACTING SPRINT\n\n📋 What it is:\nIntensive character development using Chubbuck 12-step method. Daily work with weekly reviews. Focus on deep character building and emotional truth.\n\n⏰ When: Daily work • Weekly review\n\n🎭 Method: Chubbuck 12-Step + Sprint methodology\n- Deep character analysis\n- Emotional preparation\n- Scene work and tactics\n- Regular check-ins and adjustments\n\n💡 Why it works: Structured approach to character development with built-in feedback loops.';
+break;
+case 'Storyboard Jam':
+detailsText = '🎬 STORYBOARD JAM\n\n📋 What it is:\nWeekly collaborative session: group improvisation, scene prototyping, collective dramaturgy. All characters contribute to ensemble storytelling.\n\n⏰ When: Weekly • 2-3 hours\n\n🎭 Method: Devised Theatre + Design Thinking\n- Group improvisation\n- Scene prototyping\n- Collective dramaturgy\n- Real-time feedback\n- Collaborative refinement\n\n💡 Why it works: Brings individual character work into collective creative space for ensemble building.';
+break;
+case 'Daily Standups':
+detailsText = '☀️ DAILY STANDUPS\n\n📋 What it is:\nQuick daily sync: What did you work on yesterday? What will you work on today? Any blockers?\n\n⏰ When: Daily • 15 minutes maximum\n\n🎭 Method: Classic Scrum standup\n- Yesterday\'s progress\n- Today\'s plan\n- Blockers or challenges\n- Quick problem-solving\n\n💡 Why it works: Maintains momentum, identifies issues early, keeps everyone connected.';
+break;
+case 'Community Impact Review':
+detailsText = '🌍 COMMUNITY IMPACT REVIEW\n\n📋 What it is:\nMid-sprint and end-sprint assessment of social impact, community engagement, and values alignment.\n\n⏰ When: Mid & end sprint • 1-2 hours\n\n🎭 Method: Applied Theatre methodology\n- Assess social impact\n- Review community engagement\n- Check values alignment\n- Plan community connections\n\n💡 Why it works: Ensures artistic work serves meaningful social purposes and maintains community connection.';
+break;
+case 'Sprint Retrospective':
+detailsText = '🔄 SPRINT RETROSPECTIVE\n\n📋 What it is:\nEnd-of-sprint reflection: What went well? What could be improved? What will we try differently next sprint?\n\n⏰ When: End of sprint • 2 hours\n\n🎭 Method: Scrum retrospective + Design Thinking\n- Celebrate successes\n- Identify improvements\n- Plan changes for next sprint\n- Team bonding and learning\n\n💡 Why it works: Continuous improvement through structured reflection and team learning.';
+break;
+case 'Prototype & Tech Rehearsal':
+detailsText = '🔧 PROTOTYPE & TECH REHEARSAL\n\n📋 What it is:\nSafe space for creative experimentation, technical testing, scene refinement. Design Thinking prototype/test phase combined with traditional tech rehearsal.\n\n⏰ When: Before showcase • 4-6 hours\n\n🎭 Method: Design Thinking + Traditional Theatre\n- Creative experimentation\n- Technical testing\n- Scene refinement\n- Risk-free failure space\n\n💡 Why it works: Allows for creative risk-taking and technical problem-solving before public presentation.';
+break;
+case 'Daily Self-Tape & Sharing':
+detailsText = '📹 DAILY SELF-TAPE & SHARING\n\n📋 What it is:\nIndividual daily character work documentation, weekly sharing with ensemble. Combines Chubbuck journaling with Agile transparency principles.\n\n⏰ When: Daily work • Weekly sharing\n\n🎭 Method: Chubbuck + Agile transparency\n- Daily character work\n- Self-documentation\n- Weekly sharing sessions\n- Peer feedback\n\n💡 Why it works: Makes individual progress visible and creates learning opportunities for the entire ensemble.';
+break;
+default:
+detailsText = '📋 DETAILED INFORMATION\n\nThis step includes specific activities, timing, and deliverables. Click the Info button to see methodology and sources.';
 }
+
+// Create a better modal instead of alert
+showModal(title, detailsText);
+}
+
+function showModal(title, content) {
+// Remove existing modal if any
+const existingModal = document.querySelector('.details-modal');
+if (existingModal) {
+existingModal.remove();
+}
+
+// Create modal
+const modal = document.createElement('div');
+modal.className = 'details-modal';
+modal.innerHTML = `
+<div class="modal-backdrop" onclick="closeModal()"></div>
+<div class="modal-content">
+<div class="modal-header">
+<h3>${title}</h3>
+<button class="modal-close" onclick="closeModal()">✕</button>
+</div>
+<div class="modal-body">
+<pre>${content}</pre>
+</div>
+</div>
+`;
+
+document.body.appendChild(modal);
+
+// Add modal styles
+const style = document.createElement('style');
+style.textContent = `
+.details-modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1000;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.modal-backdrop {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+backdrop-filter: blur(10px);
+}
+
+.modal-content {
+position: relative;
+background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+border: 1px solid rgba(0, 122, 255, 0.3);
+border-radius: 16px;
+max-width: 600px;
+max-height: 80vh;
+overflow: hidden;
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.5rem;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+background: rgba(0, 122, 255, 0.1);
+}
+
+.modal-header h3 {
+color: #007AFF;
+font-size: 1.3rem;
+font-weight: 700;
+margin: 0;
+}
+
+.modal-close {
+background: none;
+border: none;
+color: #8E8E93;
+font-size: 1.5rem;
+cursor: pointer;
+padding: 0.5rem;
+border-radius: 50%;
+transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+background: rgba(255, 255, 255, 0.1);
+color: #ffffff;
+}
+
+.modal-body {
+padding: 1.5rem;
+overflow-y: auto;
+max-height: 60vh;
+}
+
+.modal-body pre {
+color: #E5E5E7;
+font-family: 'Inter', sans-serif;
+font-size: 0.9rem;
+line-height: 1.6;
+white-space: pre-wrap;
+margin: 0;
+}
+`;
+document.head.appendChild(style);
+}
+
+function closeModal() {
+const modal = document.querySelector('.details-modal');
+if (modal) {
+modal.remove();
+}
+}
+
+function switchView(viewName) {
+// Hide all views
+document.querySelectorAll('.timeline-view').forEach(view => {
+view.classList.remove('active');
+});
+
+// Remove active class from all buttons
+document.querySelectorAll('.timeline-btn').forEach(btn => {
+btn.classList.remove('active');
+});
+
+// Show selected view
+document.getElementById(viewName).classList.add('active');
+
+// Add active class to clicked button
+event.target.classList.add('active');
+}
+
+// Add some interactive hover effects
+document.querySelectorAll('.legend-item').forEach(item => {
+item.addEventListener('mouseenter', function() {
+const color = this.querySelector('.legend-dot').style.backgroundColor;
+this.style.boxShadow = `0 8px 25px ${color}40`;
+});
+
+item.addEventListener('mouseleave', function() {
+this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.3)';
+});
+});
+
+// Text overflow detection and compact mode
+function checkTextOverflow() {
+document.querySelectorAll('.step-function').forEach(element => {
+const maxChars = 160;
+const text = element.textContent;
+
+if (text.length > maxChars) {
+element.textContent = text.substring(0, maxChars) + '...';
+element.classList.add('overflow');
+element.closest('.step-card').classList.add('compact-mode');
+
+// Add tooltip
+element.title = text;
+element.style.cursor = 'help';
+}
+});
+}
+
+// Run on load
+document.addEventListener('DOMContentLoaded', checkTextOverflow);
+
+// Add connecting lines animation on scroll (subtle cybernetic effect)
+window.addEventListener('scroll', function() {
+const scrolled = window.pageYOffset;
+const rate = scrolled * -0.5;
+document.querySelector('.header::before') && 
+(document.querySelector('.header').style.transform = `translateY(${rate}px)`);
+});
+
+// Add click handlers for timeline steps
+document.querySelectorAll('.timeline-step').forEach(step => {
+step.addEventListener('click', function() {
+this.style.transform = 'translateY(-12px) scale(1.02)';
+setTimeout(() => {
+this.style.transform = 'translateY(-8px)';
+}, 200);
+});
+});
+
+// Add pulse effect to cycle indicator
+document.querySelectorAll('.cycle-indicator').forEach(indicator => {
+setInterval(() => {
+indicator.style.boxShadow = '0 0 30px rgba(52, 199, 89, 0.8)';
+setTimeout(() => {
+indicator.style.boxShadow = '0 0 15px rgba(52, 199, 89, 0.4)';
+}, 500);
+}, 2000);
+});
 </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'95d0994ac7a1e462',t:'MTc1MjE1NjE0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
+
