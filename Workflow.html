@@ -1,0 +1,926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 12.0px 0.0px; font: 16.0px Times; -webkit-text-stroke: #000000}
+    span.s1 {font-kerning: none}
+    span.s2 {font: 12.0px Times; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1">* {</span><span class="s2"><br>
+</span><span class="s1">margin: 0;</span><span class="s2"><br>
+</span><span class="s1">padding: 0;</span><span class="s2"><br>
+</span><span class="s1">box-sizing: border-box;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">body {</span><span class="s2"><br>
+</span><span class="s1">font-family: 'Inter', sans-serif;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);</span><span class="s2"><br>
+</span><span class="s1">color: #ffffff;</span><span class="s2"><br>
+</span><span class="s1">min-height: 100vh;</span><span class="s2"><br>
+</span><span class="s1">overflow-x: auto;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.container {</span><span class="s2"><br>
+</span><span class="s1">max-width: 1400px;</span><span class="s2"><br>
+</span><span class="s1">margin: 0 auto;</span><span class="s2"><br>
+</span><span class="s1">padding: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.header {</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 3rem;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.header::before {</span><span class="s2"><br>
+</span><span class="s1">content: '';</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">top: 50%;</span><span class="s2"><br>
+</span><span class="s1">left: 50%;</span><span class="s2"><br>
+</span><span class="s1">transform: translate(-50%, -50%);</span><span class="s2"><br>
+</span><span class="s1">width: 200px;</span><span class="s2"><br>
+</span><span class="s1">height: 200px;</span><span class="s2"><br>
+</span><span class="s1">background: radial-gradient(circle, rgba(0, 122, 255, 0.1) 0%, transparent 70%);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 50%;</span><span class="s2"><br>
+</span><span class="s1">z-index: -1;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.main-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 3.5rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 800;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, #007AFF, #34C759, #FFD60A);</span><span class="s2"><br>
+</span><span class="s1">-webkit-background-clip: text;</span><span class="s2"><br>
+</span><span class="s1">-webkit-text-fill-color: transparent;</span><span class="s2"><br>
+</span><span class="s1">background-clip: text;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 0.5rem;</span><span class="s2"><br>
+</span><span class="s1">letter-spacing: -0.02em;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.subtitle {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.2rem;</span><span class="s2"><br>
+</span><span class="s1">color: #8E8E93;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 400;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.color-legend {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">justify-content: center;</span><span class="s2"><br>
+</span><span class="s1">gap: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">flex-wrap: wrap;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 3rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.legend-item {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">gap: 0.5rem;</span><span class="s2"><br>
+</span><span class="s1">padding: 0.75rem 1rem;</span><span class="s2"><br>
+</span><span class="s1">background: rgba(255, 255, 255, 0.05);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 12px;</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(255, 255, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">transition: all 0.3s ease;</span><span class="s2"><br>
+</span><span class="s1">cursor: pointer;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.legend-item:hover {</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-2px);</span><span class="s2"><br>
+</span><span class="s1">background: rgba(255, 255, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.legend-icon {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.legend-dot {</span><span class="s2"><br>
+</span><span class="s1">width: 12px;</span><span class="s2"><br>
+</span><span class="s1">height: 12px;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 50%;</span><span class="s2"><br>
+</span><span class="s1">flex-shrink: 0;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.legend-text {</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 500;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.manifesto {</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(255, 255, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 20px;</span><span class="s2"><br>
+</span><span class="s1">padding: 2rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 3rem;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">overflow: hidden;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.manifesto::before {</span><span class="s2"><br>
+</span><span class="s1">content: '';</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">top: 0;</span><span class="s2"><br>
+</span><span class="s1">left: 0;</span><span class="s2"><br>
+</span><span class="s1">right: 0;</span><span class="s2"><br>
+</span><span class="s1">height: 3px;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(90deg, #FF3B30, #007AFF, #34C759, #FFD60A, #AF52DE);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.manifesto h2 {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.8rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.manifesto p {</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.7;</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.core-value {</span><span class="s2"><br>
+</span><span class="s1">font-weight: 600;</span><span class="s2"><br>
+</span><span class="s1">color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.smart-timeline {</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(255, 255, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 20px;</span><span class="s2"><br>
+</span><span class="s1">padding: 3rem 2rem;</span><span class="s2"><br>
+</span><span class="s1">margin: 3rem 0;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">overflow: hidden;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.smart-timeline::before {</span><span class="s2"><br>
+</span><span class="s1">content: '';</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">top: 0;</span><span class="s2"><br>
+</span><span class="s1">left: 0;</span><span class="s2"><br>
+</span><span class="s1">right: 0;</span><span class="s2"><br>
+</span><span class="s1">height: 3px;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(90deg, #FF3B30, #007AFF, #34C759, #FFD60A, #AF52DE);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-header {</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 3rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 2rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-subtitle {</span><span class="s2"><br>
+</span><span class="s1">color: #8E8E93;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.1rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-controls {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">justify-content: center;</span><span class="s2"><br>
+</span><span class="s1">gap: 1rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-btn {</span><span class="s2"><br>
+</span><span class="s1">padding: 0.75rem 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.2);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid #007AFF;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 25px;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">cursor: pointer;</span><span class="s2"><br>
+</span><span class="s1">transition: all 0.3s ease;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 600;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-btn:hover, .timeline-btn.active {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.4);</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-2px);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-container {</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">max-width: 1200px;</span><span class="s2"><br>
+</span><span class="s1">margin: 0 auto;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-spine {</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">left: 50%;</span><span class="s2"><br>
+</span><span class="s1">top: 0;</span><span class="s2"><br>
+</span><span class="s1">bottom: 0;</span><span class="s2"><br>
+</span><span class="s1">width: 4px;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(180deg, #FF3B30, #007AFF, #34C759, #FFD60A, #AF52DE);</span><span class="s2"><br>
+</span><span class="s1">transform: translateX(-50%);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 2px;</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-phase {</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 4rem;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.phase-header {</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 2rem;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">z-index: 10;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.phase-title {</span><span class="s2"><br>
+</span><span class="s1">display: inline-block;</span><span class="s2"><br>
+</span><span class="s1">padding: 1rem 2rem;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(0, 122, 255, 0.2) 0%, rgba(52, 199, 89, 0.2) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 2px solid rgba(0, 122, 255, 0.5);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 25px;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.3rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.phase-title::before {</span><span class="s2"><br>
+</span><span class="s1">content: '';</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">left: 50%;</span><span class="s2"><br>
+</span><span class="s1">bottom: -15px;</span><span class="s2"><br>
+</span><span class="s1">transform: translateX(-50%);</span><span class="s2"><br>
+</span><span class="s1">width: 0;</span><span class="s2"><br>
+</span><span class="s1">height: 0;</span><span class="s2"><br>
+</span><span class="s1">border-left: 10px solid transparent;</span><span class="s2"><br>
+</span><span class="s1">border-right: 10px solid transparent;</span><span class="s2"><br>
+</span><span class="s1">border-top: 10px solid rgba(0, 122, 255, 0.5);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-steps {</span><span class="s2"><br>
+</span><span class="s1">display: grid;</span><span class="s2"><br>
+</span><span class="s1">grid-template-columns: 1fr 1fr;</span><span class="s2"><br>
+</span><span class="s1">gap: 2rem;</span><span class="s2"><br>
+</span><span class="s1">align-items: start;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step {</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(26, 26, 46, 0.4) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(255, 255, 255, 0.15);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 16px;</span><span class="s2"><br>
+</span><span class="s1">padding: 2rem;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">transition: all 0.3s ease;</span><span class="s2"><br>
+</span><span class="s1">cursor: pointer;</span><span class="s2"><br>
+</span><span class="s1">backdrop-filter: blur(10px);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step:hover {</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-8px);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);</span><span class="s2"><br>
+</span><span class="s1">border-color: rgba(255, 255, 255, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step.left {</span><span class="s2"><br>
+</span><span class="s1">margin-right: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step.right {</span><span class="s2"><br>
+</span><span class="s1">margin-left: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step::before {</span><span class="s2"><br>
+</span><span class="s1">content: '';</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">top: 50%;</span><span class="s2"><br>
+</span><span class="s1">width: 20px;</span><span class="s2"><br>
+</span><span class="s1">height: 20px;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, #007AFF, #34C759);</span><span class="s2"><br>
+</span><span class="s1">border: 3px solid #ffffff;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 50%;</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-50%);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 0 15px rgba(0, 122, 255, 0.5);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step.left::before {</span><span class="s2"><br>
+</span><span class="s1">right: -42px;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step.right::before {</span><span class="s2"><br>
+</span><span class="s1">left: -42px;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-number {</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">top: -10px;</span><span class="s2"><br>
+</span><span class="s1">left: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, #007AFF, #34C759);</span><span class="s2"><br>
+</span><span class="s1">color: white;</span><span class="s2"><br>
+</span><span class="s1">width: 30px;</span><span class="s2"><br>
+</span><span class="s1">height: 30px;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 50%;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">justify-content: center;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 4px 15px rgba(0, 122, 255, 0.4);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-icon {</span><span class="s2"><br>
+</span><span class="s1">font-size: 2.5rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.4rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">color: #ffffff;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 0.75rem;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.3;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-disciplines {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">gap: 0.5rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">flex-wrap: wrap;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.discipline-tag {</span><span class="s2"><br>
+</span><span class="s1">padding: 0.25rem 0.75rem;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 20px;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.8rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 500;</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.tag-scrum { background: rgba(255, 59, 48, 0.2); border-color: #FF3B30; color: #FF3B30; }</span><span class="s2"><br>
+</span><span class="s1">.tag-design { background: rgba(0, 122, 255, 0.2); border-color: #007AFF; color: #007AFF; }</span><span class="s2"><br>
+</span><span class="s1">.tag-devised { background: rgba(52, 199, 89, 0.2); border-color: #34C759; color: #34C759; }</span><span class="s2"><br>
+</span><span class="s1">.tag-chubbuck { background: rgba(255, 214, 10, 0.2); border-color: #FFD60A; color: #FFD60A; }</span><span class="s2"><br>
+</span><span class="s1">.tag-applied { background: rgba(175, 82, 222, 0.2); border-color: #AF52DE; color: #AF52DE; }</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-description {</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.6;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.95rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-timing {</span><span class="s2"><br>
+</span><span class="s1">color: #8E8E93;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.85rem;</span><span class="s2"><br>
+</span><span class="s1">font-style: italic;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-actions {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">gap: 0.75rem;</span><span class="s2"><br>
+</span><span class="s1">margin-top: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-btn {</span><span class="s2"><br>
+</span><span class="s1">padding: 0.5rem 1rem;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 20px;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.8rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 600;</span><span class="s2"><br>
+</span><span class="s1">cursor: pointer;</span><span class="s2"><br>
+</span><span class="s1">transition: all 0.3s ease;</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.btn-primary {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.2);</span><span class="s2"><br>
+</span><span class="s1">border-color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.btn-primary:hover {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.4);</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-2px);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.btn-secondary {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(52, 199, 89, 0.2);</span><span class="s2"><br>
+</span><span class="s1">border-color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.btn-secondary:hover {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(52, 199, 89, 0.4);</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-2px);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.cycle-indicator {</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">right: 1rem;</span><span class="s2"><br>
+</span><span class="s1">top: 1rem;</span><span class="s2"><br>
+</span><span class="s1">width: 40px;</span><span class="s2"><br>
+</span><span class="s1">height: 40px;</span><span class="s2"><br>
+</span><span class="s1">border: 2px solid #34C759;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 50%;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">justify-content: center;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">animation: rotate 4s linear infinite;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-summary {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(0, 122, 255, 0.3);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 16px;</span><span class="s2"><br>
+</span><span class="s1">padding: 2rem;</span><span class="s2"><br>
+</span><span class="s1">margin-top: 3rem;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.summary-title {</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.3rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.summary-text {</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.6;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.summary-highlight {</span><span class="s2"><br>
+</span><span class="s1">color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-view {</span><span class="s2"><br>
+</span><span class="s1">display: none;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-view.active {</span><span class="s2"><br>
+</span><span class="s1">display: block;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">@keyframes rotate {</span><span class="s2"><br>
+</span><span class="s1">0% { transform: rotate(0deg); }</span><span class="s2"><br>
+</span><span class="s1">100% { transform: rotate(360deg); }</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">@keyframes pulse {</span><span class="s2"><br>
+</span><span class="s1">0%, 100% { opacity: 0.7; transform: scale(1); }</span><span class="s2"><br>
+</span><span class="s1">50% { opacity: 1; transform: scale(1.05); }</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.pulse {</span><span class="s2"><br>
+</span><span class="s1">animation: pulse 2s infinite;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">@media (max-width: 1024px) {</span><span class="s2"><br>
+</span><span class="s1">.timeline-steps {</span><span class="s2"><br>
+</span><span class="s1">grid-template-columns: 1fr;</span><span class="s2"><br>
+</span><span class="s1">gap: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-spine {</span><span class="s2"><br>
+</span><span class="s1">left: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step {</span><span class="s2"><br>
+</span><span class="s1">margin-left: 4rem !important;</span><span class="s2"><br>
+</span><span class="s1">margin-right: 0 !important;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-step::before {</span><span class="s2"><br>
+</span><span class="s1">left: -42px !important;</span><span class="s2"><br>
+</span><span class="s1">right: auto !important;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">@media (max-width: 768px) {</span><span class="s2"><br>
+</span><span class="s1">.smart-timeline {</span><span class="s2"><br>
+</span><span class="s1">padding: 2rem 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-controls {</span><span class="s2"><br>
+</span><span class="s1">flex-direction: column;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.timeline-btn {</span><span class="s2"><br>
+</span><span class="s1">width: 200px;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-icon {</span><span class="s2"><br>
+</span><span class="s1">font-size: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.workflow-board {</span><span class="s2"><br>
+</span><span class="s1">display: grid;</span><span class="s2"><br>
+</span><span class="s1">grid-template-columns: repeat(4, 1fr);</span><span class="s2"><br>
+</span><span class="s1">gap: 2rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 3rem;</span><span class="s2"><br>
+</span><span class="s1">align-items: start;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.band {</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(255, 255, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 16px;</span><span class="s2"><br>
+</span><span class="s1">padding: 1.25rem;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">flex-direction: column;</span><span class="s2"><br>
+</span><span class="s1">height: 100%;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.band-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.4rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">flex-shrink: 0;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.band-title::after {</span><span class="s2"><br>
+</span><span class="s1">content: '';</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">bottom: -8px;</span><span class="s2"><br>
+</span><span class="s1">left: 50%;</span><span class="s2"><br>
+</span><span class="s1">transform: translateX(-50%);</span><span class="s2"><br>
+</span><span class="s1">width: 60px;</span><span class="s2"><br>
+</span><span class="s1">height: 2px;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(90deg, #007AFF, #34C759);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 1px;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.band-content {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">flex-direction: column;</span><span class="s2"><br>
+</span><span class="s1">flex: 1;</span><span class="s2"><br>
+</span><span class="s1">gap: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-card {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 0, 0, 0.3);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(255, 255, 255, 0.15);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 12px;</span><span class="s2"><br>
+</span><span class="s1">padding: 20px;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">transition: all 0.3s ease;</span><span class="s2"><br>
+</span><span class="s1">cursor: pointer;</span><span class="s2"><br>
+</span><span class="s1">perspective: 1000px;</span><span class="s2"><br>
+</span><span class="s1">height: 280px;</span><span class="s2"><br>
+</span><span class="s1">width: 100%;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">flex-direction: column;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-card:hover {</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-4px);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);</span><span class="s2"><br>
+</span><span class="s1">border-color: rgba(255, 255, 255, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.card-inner {</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">width: 100%;</span><span class="s2"><br>
+</span><span class="s1">height: 100%;</span><span class="s2"><br>
+</span><span class="s1">text-align: left;</span><span class="s2"><br>
+</span><span class="s1">transition: transform 0.6s;</span><span class="s2"><br>
+</span><span class="s1">transform-style: preserve-3d;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-card.flipped .card-inner {</span><span class="s2"><br>
+</span><span class="s1">transform: rotateY(180deg);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.card-front, .card-back {</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">width: 100%;</span><span class="s2"><br>
+</span><span class="s1">height: 100%;</span><span class="s2"><br>
+</span><span class="s1">backface-visibility: hidden;</span><span class="s2"><br>
+</span><span class="s1">top: 0;</span><span class="s2"><br>
+</span><span class="s1">left: 0;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">flex-direction: column;</span><span class="s2"><br>
+</span><span class="s1">justify-content: space-between;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.card-back {</span><span class="s2"><br>
+</span><span class="s1">transform: rotateY(180deg);</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.15);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 8px;</span><span class="s2"><br>
+</span><span class="s1">padding: 1.25rem;</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(0, 122, 255, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.card-header {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">justify-content: space-between;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 12px;</span><span class="s2"><br>
+</span><span class="s1">min-height: 32px;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.icon-ribbon {</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">gap: 8px;</span><span class="s2"><br>
+</span><span class="s1">flex-wrap: nowrap;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.icon-ribbon .discipline-tag {</span><span class="s2"><br>
+</span><span class="s1">font-size: 24px;</span><span class="s2"><br>
+</span><span class="s1">padding: 0;</span><span class="s2"><br>
+</span><span class="s1">border: none;</span><span class="s2"><br>
+</span><span class="s1">background: none;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">justify-content: center;</span><span class="s2"><br>
+</span><span class="s1">width: 24px;</span><span class="s2"><br>
+</span><span class="s1">height: 24px;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-card .step-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.1rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 600;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 8px;</span><span class="s2"><br>
+</span><span class="s1">color: #ffffff;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.3;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-function {</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.4;</span><span class="s2"><br>
+</span><span class="s1">flex: 1;</span><span class="s2"><br>
+</span><span class="s1">display: -webkit-box;</span><span class="s2"><br>
+</span><span class="s1">-webkit-line-clamp: 2;</span><span class="s2"><br>
+</span><span class="s1">-webkit-box-orient: vertical;</span><span class="s2"><br>
+</span><span class="s1">overflow: hidden;</span><span class="s2"><br>
+</span><span class="s1">text-overflow: ellipsis;</span><span class="s2"><br>
+</span><span class="s1">max-height: 2.8em;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-when {</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.85rem;</span><span class="s2"><br>
+</span><span class="s1">color: #8E8E93;</span><span class="s2"><br>
+</span><span class="s1">font-style: italic;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.card-controls {</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">bottom: 20px;</span><span class="s2"><br>
+</span><span class="s1">left: 20px;</span><span class="s2"><br>
+</span><span class="s1">right: 20px;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">gap: 8px;</span><span class="s2"><br>
+</span><span class="s1">z-index: 10;</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 0, 0, 0.8);</span><span class="s2"><br>
+</span><span class="s1">padding: 8px;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 8px;</span><span class="s2"><br>
+</span><span class="s1">backdrop-filter: blur(10px);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.card-control-btn {</span><span class="s2"><br>
+</span><span class="s1">flex: 1;</span><span class="s2"><br>
+</span><span class="s1">height: 32px;</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.2);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid #007AFF;</span><span class="s2"><br>
+</span><span class="s1">border-radius: 6px;</span><span class="s2"><br>
+</span><span class="s1">display: flex;</span><span class="s2"><br>
+</span><span class="s1">align-items: center;</span><span class="s2"><br>
+</span><span class="s1">justify-content: center;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.75rem;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">transition: all 0.3s ease;</span><span class="s2"><br>
+</span><span class="s1">cursor: pointer;</span><span class="s2"><br>
+</span><span class="s1">backdrop-filter: blur(10px);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.text-clamp {</span><span class="s2"><br>
+</span><span class="s1">max-height: 160px;</span><span class="s2"><br>
+</span><span class="s1">overflow: hidden;</span><span class="s2"><br>
+</span><span class="s1">position: relative;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.text-clamp.overflow::after {</span><span class="s2"><br>
+</span><span class="s1">content: '...More';</span><span class="s2"><br>
+</span><span class="s1">position: absolute;</span><span class="s2"><br>
+</span><span class="s1">bottom: 0;</span><span class="s2"><br>
+</span><span class="s1">right: 0;</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.8) 50%);</span><span class="s2"><br>
+</span><span class="s1">padding-left: 20px;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">cursor: pointer;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.compact-mode .step-function {</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.8rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.compact-mode .icon-ribbon .discipline-tag {</span><span class="s2"><br>
+</span><span class="s1">font-size: 20px;</span><span class="s2"><br>
+</span><span class="s1">width: 20px;</span><span class="s2"><br>
+</span><span class="s1">height: 20px;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.card-control-btn:hover {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(0, 122, 255, 0.4);</span><span class="s2"><br>
+</span><span class="s1">transform: scale(1.1);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.expand-btn {</span><span class="s2"><br>
+</span><span class="s1">border-color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">background: rgba(52, 199, 89, 0.2);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.expand-btn:hover {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(52, 199, 89, 0.4);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 4px 15px rgba(52, 199, 89, 0.3);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.back-content h4 {</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 0.5rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.back-content p {</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.5;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-detail {</span><span class="s2"><br>
+</span><span class="s1">background: rgba(52, 199, 89, 0.1);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(52, 199, 89, 0.3);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 8px;</span><span class="s2"><br>
+</span><span class="s1">padding: 1rem;</span><span class="s2"><br>
+</span><span class="s1">margin-top: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-title {</span><span class="s2"><br>
+</span><span class="s1">color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 600;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 0.5rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.sidebar {</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(52, 199, 89, 0.08) 0%, rgba(52, 199, 89, 0.02) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(52, 199, 89, 0.2);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 16px;</span><span class="s2"><br>
+</span><span class="s1">padding: 2rem;</span><span class="s2"><br>
+</span><span class="s1">margin: 3rem 0;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.sidebar-title {</span><span class="s2"><br>
+</span><span class="s1">color: #34C759;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.sidebar-description p {</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.6;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 0.75rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-cards {</span><span class="s2"><br>
+</span><span class="s1">margin: 3rem 0;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.section-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.8rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 700;</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-grid {</span><span class="s2"><br>
+</span><span class="s1">display: grid;</span><span class="s2"><br>
+</span><span class="s1">grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));</span><span class="s2"><br>
+</span><span class="s1">gap: 2rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-card {</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.02) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(0, 122, 255, 0.2);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 12px;</span><span class="s2"><br>
+</span><span class="s1">padding: 1.5rem;</span><span class="s2"><br>
+</span><span class="s1">transition: all 0.3s ease;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-card:hover {</span><span class="s2"><br>
+</span><span class="s1">transform: translateY(-4px);</span><span class="s2"><br>
+</span><span class="s1">box-shadow: 0 12px 30px rgba(0, 122, 255, 0.2);</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-card-title {</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1.2rem;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 600;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-steps {</span><span class="s2"><br>
+</span><span class="s1">list-style: none;</span><span class="s2"><br>
+</span><span class="s1">padding: 0;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-steps li {</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">padding: 0.5rem 0;</span><span class="s2"><br>
+</span><span class="s1">border-bottom: 1px solid rgba(255, 255, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-steps li:last-child {</span><span class="s2"><br>
+</span><span class="s1">border-bottom: none;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.method-ref {</span><span class="s2"><br>
+</span><span class="s1">color: #8E8E93;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.85rem;</span><span class="s2"><br>
+</span><span class="s1">font-style: italic;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.footer {</span><span class="s2"><br>
+</span><span class="s1">background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);</span><span class="s2"><br>
+</span><span class="s1">border: 1px solid rgba(255, 255, 255, 0.1);</span><span class="s2"><br>
+</span><span class="s1">border-radius: 16px;</span><span class="s2"><br>
+</span><span class="s1">padding: 2rem;</span><span class="s2"><br>
+</span><span class="s1">margin-top: 3rem;</span><span class="s2"><br>
+</span><span class="s1">text-align: center;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.footer-main {</span><span class="s2"><br>
+</span><span class="s1">color: #E5E5E7;</span><span class="s2"><br>
+</span><span class="s1">line-height: 1.6;</span><span class="s2"><br>
+</span><span class="s1">margin-bottom: 1rem;</span><span class="s2"><br>
+</span><span class="s1">font-size: 0.9rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.footer-note {</span><span class="s2"><br>
+</span><span class="s1">color: #007AFF;</span><span class="s2"><br>
+</span><span class="s1">font-weight: 500;</span><span class="s2"><br>
+</span><span class="s1">font-size: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">@media (max-width: 1200px) {</span><span class="s2"><br>
+</span><span class="s1">.workflow-board {</span><span class="s2"><br>
+</span><span class="s1">grid-template-columns: repeat(2, 1fr);</span><span class="s2"><br>
+</span><span class="s1">gap: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">@media (max-width: 768px) {</span><span class="s2"><br>
+</span><span class="s1">.main-title {</span><span class="s2"><br>
+</span><span class="s1">font-size: 2.5rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.color-legend {</span><span class="s2"><br>
+</span><span class="s1">gap: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.workflow-board {</span><span class="s2"><br>
+</span><span class="s1">grid-template-columns: 1fr;</span><span class="s2"><br>
+</span><span class="s1">gap: 1rem;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+<br>
+</span><span class="s1">.step-card {</span><span class="s2"><br>
+</span><span class="s1">min-height: 180px;</span><span class="s2"><br>
+</span><span class="s1">}</span><span class="s2"><br>
+</span><span class="s1">}</span></p>
+</body>
+</html>
