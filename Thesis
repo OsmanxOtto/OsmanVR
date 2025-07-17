@@ -22,7 +22,46 @@
             overflow-x: hidden;
             min-height: 100vh;
         }
-        
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thesis</title>
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #10182a; color: #fff; min-height: 100vh; }
+    .btn-back {
+      display: inline-block;
+      background: #fff;
+      color: #15223c;
+      font-weight: 600;
+      padding: 10px 28px;
+      margin: 18px auto 34px auto;
+      border-radius: 24px;
+      font-size: 1.08rem;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      box-shadow: 0 2px 8px rgba(20,40,70,0.08);
+    }
+    .btn-back:hover { background: #81c784; color: #12223d;}
+    .content { max-width: 680px; margin: 0 auto; padding: 1rem;}
+  </style>
+</head>
+<body>
+  <div style="text-align:center">
+    <a href="../index.html" class="btn-back">← Back to Workflow</a>
+  </div>
+  <div class="content">
+    <!-- Buraya thesis içeriklerini ekleyeceksin -->
+    <h1>Your Thesis Title</h1>
+    <p>Thesis content here.</p>
+  </div>
+</body>
+</html>
+
+
+
         .presentation-container {
             position: relative;
             width: 100%;
