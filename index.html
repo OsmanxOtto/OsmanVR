@@ -1,4 +1,776 @@
-	
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VR Theater Experience - Thesis Presentation</title>
+    <style>
+        /* Canva PowerPoint Export Compatible Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.4;
+            min-height: 100vh;
+        }
+
+        .presentation-container {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Canva Compatible Slide Dimensions - Each slide as separate page */
+        .slide {
+            width: 100vw;
+            max-width: 1920px;
+            height: 100vh;
+            min-height: 1080px;
+            background: white;
+            margin: 0;
+            padding: 80px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-sizing: border-box;
+            page-break-after: always;
+            page-break-inside: avoid;
+        }
+
+        /* PowerPoint Compatible Headers */
+        .slide h1 {
+            font-size: 44px;
+            color: #1f4e79;
+            margin-bottom: 30px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .slide h2 {
+            font-size: 32px;
+            color: #2e75b6;
+            margin: 20px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .slide h3 {
+            font-size: 24px;
+            color: #1f4e79;
+            margin: 15px 0 10px 0;
+            font-weight: bold;
+        }
+
+        /* PowerPoint Compatible Text */
+        .content-text {
+            font-size: 20px;
+            line-height: 1.5;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        /* PowerPoint Compatible Lists */
+        .bullet-points {
+            list-style-type: disc;
+            padding-left: 30px;
+            margin: 15px 0;
+        }
+
+        .bullet-points li {
+            font-size: 20px;
+            line-height: 1.6;
+            margin: 8px 0;
+            color: #333;
+        }
+
+        /* PowerPoint Compatible Layout */
+        .two-column {
+            display: table;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        .two-column > div {
+            display: table-cell;
+            width: 48%;
+            vertical-align: top;
+            padding-right: 20px;
+        }
+
+        .two-column > div:last-child {
+            padding-right: 0;
+            padding-left: 20px;
+        }
+
+        /* PowerPoint Compatible Boxes */
+        .content-box {
+            background: #f2f2f2;
+            border: 2px solid #2e75b6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            background: #e7f3ff;
+            border-left: 6px solid #2e75b6;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            font-size: 22px;
+        }
+
+        /* Cover Slide Styles */
+        .cover-slide {
+            background: linear-gradient(135deg, #1f4e79 0%, #2e75b6 100%);
+            color: white;
+            text-align: center;
+            display: table;
+        }
+
+        .cover-content {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .university-info {
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .thesis-title {
+            font-size: 56px;
+            font-weight: bold;
+            margin: 40px 0;
+            line-height: 1.2;
+        }
+
+        .thesis-subtitle {
+            font-size: 28px;
+            margin-bottom: 50px;
+        }
+
+        .author-info {
+            font-size: 22px;
+            margin-top: 50px;
+        }
+
+        .supervisors {
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        /* Slide Numbers */
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: #2e75b6;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .slide-reference {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* PowerPoint Print Compatibility */
+        @media print {
+            .slide {
+                page-break-after: always;
+                page-break-inside: avoid;
+                margin: 0;
+                border: none;
+                width: 100%;
+                height: 100vh;
+                display: flex !important;
+            }
+            
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            .navigation {
+                display: none !important;
+            }
+        }
+        
+        /* Canva Export Compatibility */
+        @media screen {
+            .slide {
+                border-bottom: 2px solid #e0e0e0;
+                margin-bottom: 20px;
+            }
+            
+            .slide:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+        }
+
+        /* Show all slides for Canva export */
+        .slide {
+            display: flex !important;
+        }
+        
+        /* Navigation - Hidden for export */
+        .navigation {
+            display: none;
+        }
+
+        /* PowerPoint Compatible Links */
+        .github-link {
+            background: #1f4e79;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        /* Responsive adjustments for PowerPoint */
+        @media screen and (max-width: 1400px) {
+            .slide {
+                width: 100%;
+                max-width: 1280px;
+                height: auto;
+                min-height: 720px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Cover -->
+        <div class="slide cover-slide" id="slide-1">
+            <div class="slide-number">1</div>
+            <div class="cover-content">
+                <div class="university-info">
+                    University of Europe for Applied Sciences<br>
+                    Master of Arts (MA) • Innovation Design Management<br>
+                    Academic Year 2025/2026 • July 2025
+                </div>
+                
+                <h1 class="thesis-title">Virtual Reality Theater Experience</h1>
+                <p class="thesis-subtitle">Rethinking Participation and Interaction</p>
+                
+                <div class="author-info">
+                    <strong>Author:</strong> Osman Paksoy
+                </div>
+                
+                <div class="supervisors">
+                    <strong>Supervisors:</strong> Johannes Kiessler • Martina Skender
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Introduction & Research Framework -->
+        <div class="slide" id="slide-2">
+            <div class="slide-number">2</div>
+            <div class="slide-reference">Thesis p.8-12</div>
+            
+            <h1>Introduction & Research Framework</h1>
+            
+            <div class="content-box">
+                <h2>Thesis Statement</h2>
+                <p class="content-text">"This thesis explores how virtual reality theater—defined as digital performances set in fictional virtual spaces—redefines participation and interaction in the absence of physical audience-performer presence."</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Personal Motivation</h3>
+                    <p class="content-text">Author's pandemic-era experience as performer in "Kanlı Yayın" virtual ensemble highlighted challenges of digital performance without physical audience feedback</p>
+                </div>
+                <div>
+                    <h3>Research Aim</h3>
+                    <p class="content-text">Explore how real-time feedback systems can enhance performance and reshape theatrical pleasure in digital settings</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h2>Core Research Questions</h2>
+                <ul class="bullet-points">
+                    <li>How do VR theatre experiences redefine audience participation when performers and spectators are not physically co-present?</li>
+                    <li>How can digital theatre models enhance performance and audience experience in the absence of physical feedback?</li>
+                    <li>How can real-time feedback technologies enable new forms of participation and re-establish the audience-performer feedback loop?</li>
+                </ul>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Theoretical Framework</h3>
+                    <ul class="bullet-points">
+                        <li>Liveness (reinterpreted for digital)</li>
+                        <li>Togetherness (virtual co-presence)</li>
+                        <li>Immersion (VR-enabled participation)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>IDMP: Visual Solution</h3>
+                    <p class="content-text">Virtual Acting Ensemble Workflow - next-gen framework blending Scrum, Agile, Design Thinking, and Devised Theatre principles for digital theatre teams</p>
+                    <p class="content-text" style="font-size: 16px; color: #666; margin-top: 10px;"><em>*Visual workflow diagram will be presented separately</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Problem Statement & Industry Context -->
+        <div class="slide" id="slide-3">
+            <div class="slide-number">3</div>
+            <div class="slide-reference">Thesis p.9-11, 24-30</div>
+            
+            <h1>Problem Statement & Industry Context</h1>
+            
+            <div class="quote-box">
+                "Digital theatre productions in Europe increased by 772% during pandemic. Live ticket sales dropped to 28.4% of 2019 levels." (ETC, 2022)
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h2>Industry Challenges</h2>
+                    <ul class="bullet-points">
+                        <li>62.7% work without financial compensation</li>
+                        <li>Only 40% have reliable equipment</li>
+                        <li>Measurement of digital engagement unclear</li>
+                        <li>Monetization remains unstable</li>
+                    </ul>
+                </div>
+                <div>
+                    <h2>Theoretical Gaps</h2>
+                    <ul class="bullet-points">
+                        <li>Disrupted feedback loop (Fischer-Lichte)</li>
+                        <li>Blurred liveness boundaries (Auslander)</li>
+                        <li>Attention span: 20 min → 8 seconds</li>
+                        <li>Need for new interaction models</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h3>Research Gap</h3>
+                <p class="content-text">How can VR technology restore and enhance the audience-performer feedback loop in digitally located theatre?</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Theoretical Framework -->
+        <div class="slide" id="slide-4">
+            <div class="slide-number">4</div>
+            <div class="slide-reference">Thesis p.13-34</div>
+            
+            <h1>Theoretical Framework</h1>
+            
+            <div class="two-column">
+                <div class="content-box">
+                    <h3>3I Model (Burdea & Coiffet, 2003)</h3>
+                    <p class="content-text">VR defined through Immersion, Interaction, Imagination - enabling presence and real-time engagement</p>
+                </div>
+                <div class="content-box">
+                    <h3>Digital Theatre Typologies (Hawthorne, 2022)</h3>
+                    <p class="content-text">Digitally Distributed, Mediated, and Located performances</p>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h2>Active Audience Paradigm</h2>
+                <p class="content-text">Fischer-Lichte: audience as active participant; Meyerhold: audience as "fourth creator"; Artaud: theatre as transformative ritual</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Key Theoretical Concepts</h3>
+                    <ul class="bullet-points">
+                        <li>Auslander's "Liveness" (p.30-31)</li>
+                        <li>Fischer-Lichte's "Feedback Loop" (p.31-32)</li>
+                        <li>TAM: Perceived usefulness/ease of use (Masrom, 2007)</li>
+                        <li>Pupillometry as alternative feedback (p.33-34)</li>
+                    </ul>
+                </div>
+                    <h3>Critical Theoretical Insights</h3>
+                    <ul class="bullet-points">
+                        <li>Digital theatre requires new models of presence and participation</li>
+                        <li>Technology must serve human connection, not replace it</li>
+                        <li>Feedback systems are essential for sustainable digital performance</li>
+                    </ul>
+            </div>
+        </div>
+
+        <!-- Slide 5: Methodology -->
+        <div class="slide" id="slide-5">
+            <div class="slide-number">5</div>
+            <div class="slide-reference">Thesis p.40-43</div>
+            
+            <h1>Methodology</h1>
+            
+            <div class="content-box">
+                <h2>Practice-Based Research Framework</h2>
+                <p class="content-text">Hawthorne's "digitally located theatre" as operational category; autoethnography + case study approach</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Case Study: Kanlı Yayın</h3>
+                    <ul class="bullet-points">
+                        <li>Insider/practitioner laboratory</li>
+                        <li>Collective improvisation-based digital theatre</li>
+                        <li>Pandemic conditions analysis</li>
+                        <li>Design-led iterative cycles</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Mixed-Methods Analysis</h3>
+                    <ul class="bullet-points">
+                        <li><strong>Quantitative:</strong> YouTube analytics, engagement metrics</li>
+                        <li><strong>Qualitative:</strong> Thematic coding of interviews</li>
+                        <li>Production notes & observations</li>
+                        <li>Theory-practice interaction documentation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="content-box">
+                    <h3>Data Sources</h3>
+                    <p class="content-text">YouTube analytics, production notes, retrospective interviews with participants</p>
+                </div>
+                <div class="content-box">
+                    <h3>Ethics & Compliance</h3>
+                    <p class="content-text">Data anonymized, consent-based interviews, GDPR compliance</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Case Study Analysis -->
+        <div class="slide" id="slide-6">
+            <div class="slide-number">6</div>
+            <div class="slide-reference">Thesis p.59-63</div>
+            
+            <h1>Case Study: Kanlı Yayın Analysis</h1>
+            
+            <div class="content-box">
+                <h2>Digital Theatre Laboratory</h2>
+                <p class="content-text">Pandemic-era digital performance revealing new audience-performer dynamics and engagement patterns</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Audience Demographics & Behavior</h3>
+                    <ul class="bullet-points">
+                        <li>99% viewers from Turkey</li>
+                        <li>Main demographic: 18-24 years old</li>
+                        <li>Mobile: quick views; Computer: longer sessions</li>
+                        <li>Engagement peaked during active production</li>
+                        <li>Sharp drop after March 2021 (content stopped)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Digital Theatre Insights</h3>
+                    <ul class="bullet-points">
+                        <li>Flexible, unscripted format enabled real-time adaptation</li>
+                        <li>Live chat blurred performer/spectator boundaries</li>
+                        <li>Technical barriers limited sustained feedback</li>
+                        <li>Small loyal audience continued with archived content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h2>Critical Discovery</h2>
+                <p class="content-text">Digital located theatre cannot fully replicate physical stage, but enables new rituals, audience-driven meaning, and experimental feedback systems. Sustainable digital theatre requires agile, improvisational workflows and direct, real-time audience connection.</p>
+            </div>
+        </div>
+
+        <!-- Slide 7: BMC Analysis -->
+        <div class="slide" id="slide-7">
+            <div class="slide-number">7</div>
+            <div class="slide-reference">Thesis p.45-51, 62-67; ETC 2022; Murray & Scuotto 2015</div>
+            
+            <h1>BMC Analysis: Technical Infrastructure Problems</h1>
+            
+            <div class="content-box">
+                <h2>Sector-Wide Technical Barriers (Kanlı Yayın Case Study)</h2>
+                <p class="content-text">Business Model Canvas reveals critical technical infrastructure failures affecting digital theatre sustainability across Europe</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>🔑 Key Resources - CRITICAL GAPS</h3>
+                    <ul class="bullet-points">
+                        <li><strong>Inadequate technical infrastructure:</strong> frequent connection drops, low bandwidth, hardware deficiencies (ETC, 2022)</li>
+                        <li><strong>Platform dependency:</strong> external service limitations (Zoom, YouTube constraints)</li>
+                        <li><strong>Lack of archival & production memory:</strong> non-reproducible production processes, lost team contributions</li>
+                    </ul>
+                    
+                    <h3>⚡ Key Activities - DISRUPTED</h3>
+                    <ul class="bullet-points">
+                        <li><strong>Constant technical troubleshooting:</strong> connection, synchronization, live streaming stability issues</li>
+                        <li><strong>Team motivation decline:</strong> energy loss from technical problems (Murray & Scuotto, 2015)</li>
+                        <li><strong>Failed real-time audience interaction:</strong> unsustainable feedback loops</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🤝 Customer Relationships - COMPROMISED</h3>
+                    <ul class="bullet-points">
+                        <li><strong>Device-dependent experience quality:</strong> mobile users = short stays, desktop = longer but narrow audience</li>
+                        <li><strong>Broken digital feedback loop:</strong> sustainable, meaningful audience-performer connection impossible</li>
+                        <li><strong>Technical barriers limit engagement:</strong> chat-based interaction remains superficial</li>
+                    </ul>
+                    
+                    <h3>📺 Channels - PLATFORM LIMITATIONS</h3>
+                    <ul class="bullet-points">
+                        <li><strong>YouTube/Zoom dependency:</strong> limited real-time interaction capabilities</li>
+                        <li><strong>Synchronization problems:</strong> affecting performance flow and team motivation</li>
+                        <li><strong>Archive-only value:</strong> without continuous production, engagement drops sharply</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h2>Core Technical Problem (Thesis p.62-67)</h2>
+                <p class="content-text" style="color: #d32f2f;"><strong>INFRASTRUCTURE FAILURE:</strong> Current digital theatre relies on consumer-grade platforms not designed for professional live performance. Technical instability breaks Fischer-Lichte's essential feedback loop, making sustainable digital theatre production nearly impossible.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Key Findings & Discussion -->
+        <div class="slide" id="slide-8">
+            <div class="slide-number">8</div>
+            <div class="slide-reference">Thesis p.64-73</div>
+            
+            <h1>Key Findings & Discussion</h1>
+            
+            <div class="content-box">
+                <h2>Core Discovery: Fragile Digital Feedback Loop</h2>
+                <p class="content-text">Fischer-Lichte's feedback loop is fragile in digital space; Auslander's "liveness" rarely achieved. Real-time feedback unsustainable with current tech (Zoom/YouTube limitations). <strong>Physical co-presence absence breaks the essential audience-performer energy exchange.</strong></p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Audience Engagement Patterns</h3>
+                    <ul class="bullet-points">
+                        <li>8,095 total views, 773 watch hours</li>
+                        <li>18-24 largest group; 25-34 most loyal</li>
+                        <li>Women watched longer sessions</li>
+                        <li>Engagement peaked during pandemic production</li>
+                        <li>Sharp decline after content cessation</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Technical Infrastructure Barriers</h3>
+                    <ul class="bullet-points">
+                        <li>Connection issues broke performance flow</li>
+                        <li>Synchronization problems affected motivation</li>
+                        <li>Chat-based interaction remained superficial</li>
+                        <li>Production discontinuity killed team motivation</li>
+                        <li>Limited archival value without new content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="content-box">
+                    <h3>Community & Participation Desire</h3>
+                    <p class="content-text">"I want to participate" chat comments signal engagement with 3I model. Audience-performer interaction shows community-building desire, but limited by technical constraints.</p>
+                </div>
+                <div class="content-box">
+                    <h3>Feedback Loop Restoration Potential</h3>
+                    <p class="content-text">The real-time feedback loop lost in digital space can be partially restored through Vision Pro's attention tracking, realistic environments, and co-presence technologies (Fischer-Lichte, 2008, p.38-40).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Apple Vision Pro Solution -->
+        <div class="slide" id="slide-9">
+            <div class="slide-number">9</div>
+            <div class="slide-reference">Thesis p.19-20, 67-70, Fischer-Lichte p.38-40</div>
+            
+            <h1>Apple Vision Pro: Game Changer as Spatial Computer</h1>
+            
+            <div class="content-box">
+                <h2>Revolutionary "Spatial Computer" Architecture</h2>
+                <p class="content-text">Goes beyond standard VR hardware with ultra-high-resolution display and dual-chip (M2 + R1) enabling maximum realism and minimal latency</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Advanced Interaction Technologies</h3>
+                    <ul class="bullet-points">
+                        <li>Eye tracking with infrared sensors - hands-free navigation</li>
+                        <li>"Look to scroll" - content control through eye movements (2025)</li>
+                        <li>Vision Pro's eye tracking and attention measurement offers new metrics and dramaturgical possibilities for real-time audience feedback in digital theatre (Schmälzle et al., 2024; thesis p.34)</li>
+                        <li>Attention tracking adapts scenes in real-time</li>
+                        <li>Adjustable "Light Seal" and "Head Band" for comfort</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Collaborative Theater Features</h3>
+                    <ul class="bullet-points">
+                        <li>Participants can co-exist in the same digital environment through Vision Pro, experiencing interactive performances via avatars</li>
+                        <li>"Shared device access" with secure profile management</li>
+                        <li>Spatial photo/video capture (180°/360° content)</li>
+                        <li>"Immersive environments" as customizable digital stages</li>
+                        <li>"Persona" digital avatars enable active audience participation beyond traditional spectatorship</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="content-box">
+                    <h3>Privacy and Security</h3>
+                    <p class="content-text">All eye movements and personal data are encrypted locally with Optic ID. Keeping audience data local and encrypted during performances is critical for ethical and sustainable digital theatre production.</p>
+                </div>
+                <div class="content-box">
+                    <h3>Theatre-Specific Advantages</h3>
+                    <p class="content-text">"Spatial Audio," "EyeSight" for eye contact, and real-time environmental adaptation solve Kanlı Yayın's technical barriers. Next-generation VR workflows, combined with Vision Pro's technical capacity, enable digital theatre teams to work remotely, synchronized, and creatively.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Conclusion -->
+        <div class="slide" id="slide-10">
+            <div class="slide-number">10</div>
+            <div class="slide-reference">Thesis p.75</div>
+            
+            <h1>Conclusion</h1>
+            
+            <div class="content-box">
+                <h2>Main Contribution: Digital Theater Evolution</h2>
+                <p class="content-text">Audience-performer relationship in digital theater is fundamentally different from traditional stage. Digital theater is evolving—audience is now a co-creator, not just a spectator.</p>
+            </div>
+
+            <div class="two-column">
+                <div>
+                    <h3>Key Barriers Identified</h3>
+                    <ul class="bullet-points">
+                        <li>Unsustainable feedback loops</li>
+                        <li>Lack of team/audience continuity</li>
+                        <li>Technical infrastructure fragility</li>
+                        <li>Limited embodied participation</li>
+                        <li>Superficial interaction models</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Vision Pro as Solution</h3>
+                    <ul class="bullet-points">
+                        <li>VR-driven real-time feedback systems</li>
+                        <li>New managerial and technical solutions</li>
+                        <li>Creative models combining technology and human factors</li>
+                        <li>Sustained team motivation through continuity</li>
+                        <li>Broader, more diverse digital communities</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-box">
+                <h2>Future Directions</h2>
+                <p class="content-text">Despite current limitations, active participation and collective creativity are possible even without VR hardware. Kanlı Yayın shows digital participation is achievable, but requires new creative, technical, and organizational models for sustainable digital theater.</p>
+            </div>
+        </div>
+
+        <!-- Slide 11: Thank You -->
+        <div class="slide cover-slide" id="slide-11">
+            <div class="slide-number">11</div>
+            <div class="cover-content">
+                <h1 style="font-size: 48px; margin-bottom: 40px;">Thank You</h1>
+                <p style="font-size: 24px; margin-bottom: 40px;">Questions & Discussion</p>
+                
+                <a href="#" class="github-link">
+                    📁 GitHub Repository
+                </a>
+                
+                <div style="margin-top: 40px; font-size: 18px;">
+                    Osman Paksoy • Innovation Design Management<br>
+                    University of Europe for Applied Sciences
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+
+    <!-- Canva & PowerPoint Export Ready -->
+    <script>
+        // Each slide is now a separate page for Canva export
+        // PowerPoint compatibility: Print to PDF then import
+        // Canva compatibility: Each slide will appear as separate page
+        console.log("Multi-page presentation loaded. Each slide is a separate page.");
+        
+        // Add page break indicators for better visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                if (index < slides.length - 1) {
+                    const separator = document.createElement('div');
+                    separator.style.cssText = `
+                        width: 100%;
+                        height: 20px;
+                        background: #f0f0f0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 12px;
+                        color: #999;
+                        margin: 0;
+                        page-break-before: avoid;
+                    `;
+                    separator.textContent = `--- Page ${index + 1} End ---`;
+                    slide.parentNode.insertBefore(separator, slide.nextSibling);
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'960e1d6e03c3c9d1',t:'MTc1MjgwMTE5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
